@@ -28,6 +28,6 @@ Sample files can be found in src/main/resources/testfiles
 
 Initial public beta release
 
-## fCompatibility
+## Compatibility
 
 Java 8 is required for compilation and as runtime environment.
