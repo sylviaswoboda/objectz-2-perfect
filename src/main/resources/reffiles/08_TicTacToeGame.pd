@@ -1,0 +1,194 @@
+class Posn ^=
+abstract
+	var posnValue: int;
+	invariant posnValue in ([0 <= 8]:(0..8).ran, []: set of int{});
+interface
+	build{!posnValue: int}
+		pre posnValue in ([0 <= 8]:(0..8).ran, []: set of int{});
+end;
+                                  
+
+class Result ^= enum black_wins, white_wins, draw end; 
+
+// local given type, free type and abbreviation definitions
+class PassiveBoard ^= 
+abstract
+
+    // declarations of primary state variables go
+    var bposn:set of Posn;
+    var wposn:set of Posn;
+    // declarations of constants go here
+
+    // invariants from state variables and state functions and implicit invariants
+    // from axiomatic definition
+confined
+    // redeclare getter (and setter) for all non-visible state variables and constants here
+    // add function INIT here if INIT is declared non-visible
+    
+    // declarations of secondary state variables go here
+       
+    // add all non-visible operations here to make them available for inheritance
+interface
+
+	operator = (arg);
+	
+    build{!bposn:set of Posn, !wposn:set of Posn}
+        pre bposn = set of Posn{},
+            wposn = set of Posn{}
+        ;
+    
+    // add function init if init is declared visible
+    function INIT: bool
+    ^= bposn = set of Posn{} &
+       wposn = set of Posn{};
+
+    // getter function for all visible constants, primary and secondary variables, setter for primary state variables
+    function bposn;
+    function wposn;
+    schema !set_bposn(bposn_in:set of Posn) 	
+        post bposn! = bposn_in;
+    schema !set_wposn(wposn_in:set of Posn) 	
+        post wposn! = wposn_in;
+    
+    // declare all visible operations here
+     
+    schema !addToBlack (p_in:Posn)
+        post change  bposn
+             satisfy bposn' = bposn ++ set of Posn {p_in}; 
+
+     
+    schema !addToWhite (p_in:Posn)
+        post change  wposn
+             satisfy wposn' = wposn ++ set of Posn {p_in}; 
+
+
+end;
+
+// local given type, free type and abbreviation definitions
+class Colour ^= enum black, white end; 
+class ActiveBoard ^= 
+abstract
+
+    // declarations of primary state variables go
+    var bposn:set of Posn;
+    var turn:Colour;
+    var wposn:set of Posn;
+    // declarations of constants go here
+
+    // invariants from state variables and state functions and implicit invariants
+    invariant bposn ** wposn = set of Posn{};
+    // from axiomatic definition
+confined
+    // redeclare getter function for all non-visible constants here
+    // add function INIT here if INIT is declared non-visible
+    
+    // declarations of secondary state variables go here
+
+
+       
+    // add all non-visible operations here to make them available for inheritance
+interface
+
+	operator = (arg);
+	
+    build{!bposn:set of Posn, !turn:Colour, !wposn:set of Posn}
+        pre bposn ** wposn = set of Posn{},
+            bposn = set of Posn{} & wposn = set of Posn{}
+        ;
+    
+    // add function init if init is declared visible
+    function INIT: bool
+    ^= bposn = set of Posn{} & wposn = set of Posn{};
+
+    // getter function for all visible constants, primary and secondary variables, setter for primary state variables
+    function bposn;
+    function turn;
+    function wposn;
+    function free:set of Posn
+        satisfy result = (for tempVar2::([0 <= 8]:(0..8).ran, []: set of int{}) yield Posn{tempVar2}) -- (bposn ++ wposn),
+                isOver <==> inLine[bposn] | inLine[wposn] | result = set of Posn{};
+    function isOver:bool
+        satisfy result <==> true,
+        		result <==> inLine[bposn] | inLine[wposn] | free = set of Posn{};
+        		
+    schema !set_bposn(bposn_in:set of Posn) 	
+        pre  bposn_in ** wposn = set of Posn{}
+        post bposn! = bposn_in;
+    schema !set_turn(turn_in:Colour) 	
+        post turn! = turn_in;
+        
+    schema !set_wposn(wposn_in:set of Posn) 	
+        pre  bposn ** wposn_in = set of Posn{}
+        post wposn! = wposn_in;
+    
+    // declare all visible operations here
+     
+    function addToBlack_prec (p_in:Posn): bool
+        ^= turn = Colour black &
+           ~ isOver &
+           p_in in free; 
+     
+    schema !addToBlack (p_in:Posn)
+        pre addToBlack_prec(p_in)
+        post change  bposn, turn
+             satisfy bposn' = bposn ++ set of Posn {p_in} ,
+                     turn' = Colour white; 
+
+     
+    function addToWhite_prec (p_in:Posn): bool
+        ^= turn = Colour white &
+           ~ isOver &
+           p_in in free; 
+     
+    schema !addToWhite (p_in:Posn)
+        pre addToWhite_prec(p_in)
+        post change  wposn, turn
+             satisfy wposn' = wposn ++ set of Posn {p_in} ,
+                     turn' = Colour black; 
+
+     
+    function rejectBlack (p_in:Posn): bool
+        ^= (turn = Colour white) | isOver | (p_in in free); 
+     
+    function rejectWhite (p_in:Posn): bool
+        ^= (turn = Colour black) | isOver | (p_in in free); 
+     
+    ghost function considerBlack_prec (p_in:Posn): bool
+        ^= self.addToBlack_prec(p_in) | self.rejectBlack(p_in); 
+    opaque schema !considerBlack (p_in:Posn)
+        pre considerBlack_prec(p_in)
+        post ([self.addToBlack_prec(p_in)]: self!addToBlack(p_in),
+              [self.rejectBlack(p_in)]: self != self); 
+     
+    ghost function considerWhite_prec (p_in:Posn): bool
+        ^= self.addToWhite_prec(p_in) | self.rejectWhite(p_in); 
+    opaque schema !considerWhite (p_in:Posn)
+        pre considerWhite_prec(p_in)
+        post ([self.addToWhite_prec(p_in)]: self!addToWhite(p_in),
+              [self.rejectWhite(p_in)]: self != self); 
+
+
+end;
+
+class Global ^=
+abstract
+   // declaration of constants and functions
+   var inLine: map of ( (set of Posn) -> bool );
+   
+   invariant (forall ps::set of Posn :- (inLine[ps] <==> 
+   		((exists s:: set of set of nat{
+   				   set of nat{0,1,2}, set of nat{3,4,5}, set of nat {6,7,8},
+   				   set of nat{0,3,6}, set of nat{1,4,7}, set of nat {2,5,8},
+   				   set of nat{0,4,8}, set of nat{2,4,6}} :- (s <<= ps)))));
+interface
+    build{!inLine:map of ( (set of Posn) -> bool )}
+    	pre (forall ps::set of Posn :- (inLine[ps] <==> 
+   				((exists s:: set of set of nat{
+   				   set of nat{0,1,2}, set of nat{3,4,5}, set of nat {6,7,8},
+   				   set of nat{0,3,6}, set of nat{1,4,7}, set of nat {2,5,8},
+   				   set of nat{0,4,8}, set of nat{2,4,6}} :- (s <<= ps))))) 
+    ;
+    
+    // provide access to constants and functions
+    function inLine;
+end;

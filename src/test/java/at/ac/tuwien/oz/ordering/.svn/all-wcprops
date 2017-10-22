@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/oz2perfect/!svn/ver/143/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/ordering
+END
+PredicateSplitterTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/ordering/PredicateSplitterTest.java
+END
+PredicateDependencyGraphTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/oz2perfect/!svn/ver/125/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/ordering/PredicateDependencyGraphTest.java
+END
+OrderingCalculatorTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/ordering/OrderingCalculatorTest.java
+END
+PredicateParseTreeSplitterTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/ordering/PredicateParseTreeSplitterTest.java
+END
+PredicateDependencyGraphBuilderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/ordering/PredicateDependencyGraphBuilderTest.java
+END

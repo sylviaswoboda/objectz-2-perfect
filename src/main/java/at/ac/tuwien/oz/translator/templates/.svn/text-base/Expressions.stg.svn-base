@@ -1,0 +1,139 @@
+group Expression;
+
+// Used in new expression mapping
+
+polymorphicExpression(className, genericParameters) ::= "from <className><if(genericParameters)> <genericParameters><endif>"
+
+genericClassReference(className, genericParameters) ::= "<className> <genericParameters>"
+
+genericParameter(expr) 	::= "of <expr>"
+genericParameters(exprs) ::= <<of (<exprs; separator=", ">)>>
+
+cartesian(left, right) ::= "pair of (<left>, <right>)"
+
+setDefinition(type) ::= "set of <type>"
+seqDefinition(type) ::= "seq of <type>"
+bagDefinition(type) ::= "bag of <type>"
+
+// arithmetic operations
+sub(left, right) ::= "<left> - <right>"
+add(left, right) ::= "<left> + <right>"
+mult(left, right) ::= "<left> * <right>"
+div(left, right) ::= "<left> / <right>"
+intDiv(left, right) ::= "<left> / <right>"
+mod(left, right) ::= "<left> % <right>"
+
+
+range(left, right) ::= "([<left> \<= <right>]: (<left>..<right>).ran, []: set of int{})"
+
+
+// override
+mapOverride(leftType, rightType, leftRelation, rightRelation, varName) ::= "map of (<leftType> -> <rightType>) {for those <varName>::<leftRelation>.dom :- <varName> ~in <rightRelation>.dom yield pair of (<leftType>, <rightType>){<varName>, <leftRelation>[<varName>]}} ++ <rightRelation>"
+relationOverride(leftRelation, rightRelation, leftVarName, rightVarName) ::= "(those <leftVarName>::<leftRelation> :- (exists <rightVarName>::<rightRelation> :- <leftVarName>.x = <rightVarName>.x)) ++ <rightRelation>"
+
+// restrictions
+mapDomainRestriction(leftType, rightType, varName, relation, restrictingSet) ::= "map of (<leftType> -> <rightType>) {those <varName>::<relation>.pairs :- <varName>.x in <restrictingSet>}"
+mapRangeRestriction(leftType, rightType, varName, relation, restrictingSet) ::= "map of (<leftType> -> <rightType>) {those <varName>::<relation>.pairs :- <varName>.y in <restrictingSet>}"
+mapDomainAntiRestriction(leftType, rightType, varName, relation, restrictingSet) ::= "map of (<leftType> -> <rightType>) {those <varName>::<relation>.pairs :- <varName>.x ~in <restrictingSet>}"
+mapRangeAntiRestriction(leftType, rightType, varName, relation, restrictingSet) ::= "map of (<leftType> -> <rightType>) {those <varName>::<relation>.pairs :- <varName>.y ~in <restrictingSet>}"
+relationDomainRestriction(varName, relation, restrictingSet) ::= "(those <varName>::<relation> :- <varName>.x in <restrictingSet>)"
+relationRangeRestriction(varName, relation, restrictingSet) ::= "(those <varName>::<relation> :- <varName>.y in <restrictingSet>)"
+relationDomainAntiRestriction(varName, relation, restrictingSet) ::= "(those <varName>::<relation> :- <varName>.x ~in <restrictingSet>)"
+relationRangeAntiRestriction(varName, relation, restrictingSet) ::= "(those <varName>::<relation> :- <varName>.y ~in <restrictingSet>)"
+
+// set operations
+union(left, right) ::= "<left> ++ <right>"
+difference(left, right) ::= "<left> -- <right>"
+intersect(left, right) ::= "<left> ** <right>"
+
+concat(left, right) ::= "<left> ++ <right>"
+
+// seq operations
+extract(theSequence, theSet, tempVar) ::= "(for those <tempVar>::<theSet>.permndec :- <tempVar> \< #<theSequence> yield <theSequence>[<tempVar>-1])"
+filter(theSequence, theSet, tempVar) ::= "(those <tempVar>::<theSequence> :- <tempVar> in <theSet>)"
+multiplicity(left, right) ::= "<left> # <right>"
+bagScaling(bag, count) ::= "<bag>.rep(<count>)"
+bagUnion(left, right) ::= "<left> ++ <right>"
+bagDifference(left, right) ::= "<left> -- <right>"
+
+prefix(left, right) ::= "<right>.begins(<left>)"
+suffix(left, right) ::= "<right>.ends(<left>)"
+segment(left, right) ::= "<left> \<\<= <right>"
+subbag(left, right) ::= "<left> \<\<= <right>"
+inbag(left, right) ::= "<left> in <right>"
+
+
+// comparisons
+equals(left, right) ::= "<left> = <right>"
+nequals(left, right) ::= "<left> ~= <right>"
+elem(left, right) ::= "<left> in <right>"
+nelem(left, right) ::= "<left> ~in <right>"
+subset(left, right) ::= "<left> \<\<= <right>"
+str_subset(left, right) ::= "<left> \<\< <right>"
+lt(left, right) ::= "<left> \< <right>"
+lte(left, right) ::= "<left> \<= <right>"
+gt(left, right) ::= "<left> > <right>"
+gte(left, right) ::= "<left> >= <right>"
+
+
+map(left, right) ::= "map of (<left> -> <right>)"
+
+binaryRelation(left, right) ::= "set of pair of (<left>, <right>)"
+ternaryRelation(left, middle, right) ::= "set of triple of (<left>, <middle>, <right>)"
+
+generalizedUnion(expr, type) ::= "([(<expr>).empty]: <type>{}, []: ++over(<expr>))"
+generalizedIntersection(expr, type) ::= "([(<expr>).empty]: <type>{}, []: **over(<expr>))"
+distributedConcatenation(expr) ::= "flatten(<expr>)"
+
+// operations on maps and seqs
+ran(expr) ::= "<expr>.ran"
+dom(expr) ::= "<expr>.dom"
+
+
+// seq operations
+head(expr) ::= "<expr>.head"
+tail(expr) ::= "<expr>.tail"
+front(expr) ::= "<expr>.front"
+last(expr) ::= "<expr>.last"
+rev(expr) ::= "<expr>.rev"
+items(expr) ::= "<expr>.ranb"
+
+// arithmetic operations
+minus(expr) ::= "-<expr>"
+
+count(expr) ::= "#<expr>"
+
+min(expr) ::= "<expr>.min"
+max(expr) ::= "<expr>.max"
+
+pair(leftType, rightType, left, right) 							::= "pair of (<leftType>, <rightType>) {<left>, <right>}"
+triple(leftType, middleType, rightType, left, middle, right) 	::= "triple of (<leftType>, <middleType>, <rightType>) {<left>, <middle>, <right>}"
+
+tuple(elems, type) ::= <<<type> {<elems; separator=", ">}>>
+pairType(elemTypes) ::= <<pair of (<elemTypes; separator=", ">)>>
+tripleType(elemTypes) ::= <<triple of (<elemTypes; separator=", ">)>>
+
+bag(elems, type) 		::= <<bag of <type> {<elems; separator=", ">}>>
+sequence(elems, type) 	::= <<seq of <type> {<elems; separator=", ">}>>
+set(elems, type) 		::= <<set of <type> {<elems; separator=", ">}>>
+collection(elems, collectionType) ::= <<<collectionType> {<elems; separator=", ">}>>
+
+self() ::= "self"
+
+functionReference(functionName, params) ::= "<functionName>[<params; separator=\", \">]"
+attrCall(ids) ::= "<ids; separator=\".\">"
+attrAccessor(ids) ::= "<ids; separator=\".\">"
+
+successor(number) ::= "><number>"
+
+id(name, decoration) ::= "<name><decoration>"
+
+num(number) ::= "<number>"
+
+// predefined datatypes
+nat() ::= "nat"
+pnat() ::= "pNat"
+integer() ::= "int"
+bool() ::= "bool"
+real() ::= "real"
+char() ::= "char"

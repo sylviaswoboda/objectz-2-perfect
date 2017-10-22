@@ -1,0 +1,50 @@
+class Room ^= interface build{}; end;
+class Key ^= interface build{}; end;
+class DataBase ^=
+abstract
+    var access: set of pair of (Key, Room);
+
+confined
+
+
+
+
+interface
+
+    operator = (arg);
+
+    build{!access:set of pair of (Key, Room)}
+        pre access = set of pair of (Key, Room) {}
+    ;
+    function INIT: bool
+    ^= access = set of pair of (Key, Room) {};
+
+    function access;
+
+    schema !set_access(access_in:set of pair of (Key, Room))
+        post access! = access_in;
+
+
+    function extendAccess_prec (key_in:Key, rm_in:Room): bool
+        ^= ~ pair of (Key, Room) {key_in, rm_in} in access &
+           (exists access_temp:set of pair of (Key, Room) :- (access_temp = access ++ set of pair of (Key, Room) {pair of (Key, Room) {key_in, rm_in}}));
+    schema !extendAccess (key_in:Key, rm_in:Room)
+        pre extendAccess_prec(key_in, rm_in)
+        post change  access
+             satisfy access' = access ++ set of pair of (Key, Room) {pair of (Key, Room) {key_in, rm_in}};
+
+
+    function rescindAccess_prec (key_in:Key, rm_in:Room): bool
+        ^= pair of (Key, Room) {key_in, rm_in} in access &
+           (exists access_temp:set of pair of (Key, Room) :- (access_temp = access -- set of pair of (Key, Room) {pair of (Key, Room) {key_in, rm_in}}));
+    schema !rescindAccess (key_in:Key, rm_in:Room)
+        pre rescindAccess_prec(key_in, rm_in)
+        post change  access
+             satisfy access' = access -- set of pair of (Key, Room) {pair of (Key, Room) {key_in, rm_in}};
+
+    function accessGranted (key_in:Key, rm_in:Room): bool
+        ^= pair of (Key, Room) {key_in, rm_in} in access;
+
+    function accessDenied (key_in:Key, rm_in:Room): bool
+        ^= ~ pair of (Key, Room) {key_in, rm_in} in access;
+end;

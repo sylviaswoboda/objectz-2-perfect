@@ -1,0 +1,144 @@
+class Book ^=
+abstract
+    var title: String;
+    var authors: seq of String;
+    var recensionHistory: seq of String;
+    var readerHistory: seq of String;
+    var lent: bool;
+    var reviewed: bool;
+    var mayBeReviewed: bool;
+    var maxHistoryEntries: nat;
+    invariant #recensionHistory <= #readerHistory;
+    invariant #recensionHistory <= maxHistoryEntries;
+    invariant authors ~= seq of String {};
+    invariant maxHistoryEntries in set of nat {10, 20, 50, 100};
+
+confined
+    function INIT: bool
+    ^= recensionHistory = seq of String {} &
+       readerHistory = seq of String {} &
+       ~ lent &
+       ~ reviewed &
+       ~ mayBeReviewed;
+    function title;
+    function authors;
+    function recensionHistory;
+    function readerHistory;
+    function lent;
+    function reviewed;
+    function mayBeReviewed;
+    function maxHistoryEntries;
+
+    schema !set_title(title_in:String)
+        post title! = title_in;
+
+    schema !set_authors(authors_in:seq of String)
+        pre  authors_in ~= seq of String {}
+        post authors! = authors_in;
+
+    schema !set_recensionHistory(recensionHistory_in:seq of String)
+        pre  #recensionHistory_in <= #readerHistory,
+             #recensionHistory_in <= maxHistoryEntries
+        post recensionHistory! = recensionHistory_in;
+
+    schema !set_readerHistory(readerHistory_in:seq of String)
+        pre  #recensionHistory <= #readerHistory_in
+        post readerHistory! = readerHistory_in;
+
+    schema !set_lent(lent_in:bool)
+        post lent! = lent_in;
+
+    schema !set_reviewed(reviewed_in:bool)
+        post reviewed! = reviewed_in;
+
+    schema !set_mayBeReviewed(mayBeReviewed_in:bool)
+        post mayBeReviewed! = mayBeReviewed_in;
+
+    function totalLendingCount:nat
+        satisfy result = #readerHistory;
+
+
+interface
+
+    operator = (arg);
+
+    build{!title:String, !authors:seq of String, !recensionHistory:seq of String, !readerHistory:seq of String, !lent:bool, !reviewed:bool, !mayBeReviewed:bool, !maxHistoryEntries:nat}
+        pre #recensionHistory <= #readerHistory,
+            #recensionHistory <= maxHistoryEntries,
+            authors ~= seq of String {},
+            maxHistoryEntries in set of nat {10, 20, 50, 100},
+            recensionHistory = seq of String {},
+            readerHistory = seq of String {},
+            ~ lent,
+            ~ reviewed,
+            ~ mayBeReviewed
+    ;
+
+
+
+
+    function lend_prec (lender_in:String): bool
+        ^= ~ lent &
+           (exists mayBeReviewed_temp:bool, readerHistory_temp:seq of String, lent_temp:bool, reviewed_temp:bool :- (mayBeReviewed_temp & lent_temp & ~ reviewed_temp & readerHistory_temp = readerHistory ++ seq of String {lender_in}));
+    schema !lend (lender_in:String)
+        pre lend_prec(lender_in)
+        post change  mayBeReviewed, readerHistory, lent, reviewed
+             satisfy mayBeReviewed' &
+                     lent' &
+                     ~ reviewed' &
+                     readerHistory' = readerHistory ++ seq of String {lender_in};
+
+
+    function return_prec (lender_in:String): bool
+        ^= lent &
+           lender_in = readerHistory.last &
+           (exists lent_temp:bool, mayBeReviewed_temp:bool :- (~ mayBeReviewed_temp & ~ lent_temp));
+    schema !return (lender_in:String)
+        pre return_prec(lender_in)
+        post change  lent, mayBeReviewed
+             satisfy ~ mayBeReviewed' &
+                     ~ lent';
+
+
+    function latestRecension_prec : bool
+        ^= reviewed &
+           (exists recension_temp:String :- (recension_temp = recensionHistory.last));
+    function latestRecension recension_out:String
+        pre latestRecension_prec
+        satisfy result.recension_out = recensionHistory.last;
+
+
+    function readerList_prec : bool
+        ^= (exists readers_temp:seq of String :- (readers_temp = readerHistory));
+    function readerList readers_out:seq of String
+        pre readerList_prec
+        satisfy result.readers_out = readerHistory;
+
+
+    function authorList_prec : bool
+        ^= (exists authors_temp:seq of String :- (authors_temp = authors));
+    function authorList authors_out:seq of String
+        pre authorList_prec
+        satisfy result.authors_out = authors;
+
+
+    function setAuthorList_prec (authors_in:seq of String): bool
+        ^= (exists authors_temp:seq of String :- (authors_temp = authors_in));
+    schema !setAuthorList (authors_in:seq of String)
+        pre setAuthorList_prec(authors_in)
+        post change  authors
+             satisfy authors' = authors_in;
+
+
+    function review_prec (reader_in:String, recension_in:String): bool
+        ^= ~ reviewed &
+           reader_in = readerHistory.last &
+           mayBeReviewed &
+           (exists reviewed_temp:bool, recensionHistory_temp:seq of String, mayBeReviewed_temp:bool :- (reviewed_temp & ~ mayBeReviewed_temp & ((#recensionHistory = maxHistoryEntries & recensionHistory_temp = recensionHistory.tail ++ seq of String {recension_in}) | (#recensionHistory < maxHistoryEntries & recensionHistory_temp = recensionHistory ++ seq of String {recension_in}))));
+    schema !review (reader_in:String, recension_in:String)
+        pre review_prec(reader_in, recension_in)
+        post change  reviewed, recensionHistory, mayBeReviewed
+             satisfy reviewed' &
+                     ~ mayBeReviewed' &
+                     ((#recensionHistory = maxHistoryEntries & recensionHistory' = recensionHistory.tail ++ seq of String {recension_in}) | (#recensionHistory < maxHistoryEntries & recensionHistory' = recensionHistory ++ seq of String {recension_in}));
+end;

@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable
+END
+CompositePostconditionDataCollector.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/CompositePostconditionDataCollector.java
+END
+ChangeOperationCalls.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/ChangeOperationCalls.java
+END
+ThenPostcondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/ThenPostcondition.java
+END
+NonDeterministicPostconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/NonDeterministicPostconditions.java
+END
+CombinedPostconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/CombinedPostconditions.java
+END
+ComplexChangePostcondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/ComplexChangePostcondition.java
+END
+SequentialPostconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/SequentialPostconditions.java
+END
+CompositePostconditionFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/oz2perfect/!svn/ver/133/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/CompositePostconditionFactory.java
+END
+EmptyPostconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/EmptyPostconditions.java
+END
+ComplexOutputPromotions.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/ComplexOutputPromotions.java
+END
+OutputPromotions.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/OutputPromotions.java
+END
+PostconditionOrderingCalculator.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/oz2perfect/!svn/ver/133/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/combinable/PostconditionOrderingCalculator.java
+END

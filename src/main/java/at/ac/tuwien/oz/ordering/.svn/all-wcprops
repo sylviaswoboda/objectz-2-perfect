@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/oz2perfect/!svn/ver/151/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering
+END
+PredicateDependencyGraphBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/PredicateDependencyGraphBuilder.java
+END
+PredicateSplitter.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/oz2perfect/!svn/ver/106/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/PredicateSplitter.java
+END
+VariableNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/VariableNode.java
+END
+Edge.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/oz2perfect/!svn/ver/106/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/Edge.java
+END
+SchemaVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/oz2perfect/!svn/ver/151/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/SchemaVariable.java
+END
+ISchemaPredicate.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/ISchemaPredicate.java
+END
+PredicateDependencyGraph.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/oz2perfect/!svn/ver/151/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/PredicateDependencyGraph.java
+END
+PredicateNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/PredicateNode.java
+END
+OrderingItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/OrderingItem.java
+END
+OrderingCalculator.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/OrderingCalculator.java
+END
+ISchemaVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/ISchemaVariable.java
+END
+Node.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/oz2perfect/!svn/ver/106/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/Node.java
+END
+PredicateParseTreeSplitter.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/ordering/PredicateParseTreeSplitter.java
+END

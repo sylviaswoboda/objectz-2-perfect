@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/oz2perfect/!svn/ver/144/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation
+END
+PreconditionFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/PreconditionFunction.java
+END
+OperationConjunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/OperationConjunction.java
+END
+TemporaryVariableMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/TemporaryVariableMap.java
+END
+SequentialComposition.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/SequentialComposition.java
+END
+SimpleFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/oz2perfect/!svn/ver/162/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/SimpleFunction.java
+END
+OperationTypeDeterminator.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/OperationTypeDeterminator.java
+END
+CommunicationDirection.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/oz2perfect/!svn/ver/115/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/CommunicationDirection.java
+END
+SimpleDeclarationSchema.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/SimpleDeclarationSchema.java
+END
+Operation.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/oz2perfect/!svn/ver/163/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/Operation.java
+END
+NonDeterministicChoice.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/oz2perfect/!svn/ver/163/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/NonDeterministicChoice.java
+END
+SimpleChangeOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/oz2perfect/!svn/ver/162/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/SimpleChangeOperation.java
+END
+ParallelComposition.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/ParallelComposition.java
+END
+CombinedOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/CombinedOperation.java
+END
+OperationType.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/OperationType.java
+END
+OperationExpression.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/OperationExpression.java
+END
+OperationPromotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/OperationPromotion.java
+END
+ScopeEnrichment.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/oz2perfect/!svn/ver/162/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/ScopeEnrichment.java
+END
+SimpleOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/SimpleOperation.java
+END
+OperationBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/OperationBuilder.java
+END
+SimpleBoolFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/SimpleBoolFunction.java
+END
+AnonymousSchemaOperationExpression.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/AnonymousSchemaOperationExpression.java
+END

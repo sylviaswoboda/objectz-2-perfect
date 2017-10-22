@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/predicateprovider
+END
+OperationOrderingCalculator.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/predicateprovider/OperationOrderingCalculator.java
+END
+PostconditionProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/oz2perfect/!svn/ver/134/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/predicateprovider/PostconditionProvider.java
+END
+PreconditionProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/oz2perfect/!svn/ver/134/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/predicateprovider/PreconditionProvider.java
+END
+PredicateProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/oz2perfect/!svn/ver/115/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/predicateprovider/PredicateProvider.java
+END
+OperationPredicateProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/predicateprovider/OperationPredicateProvider.java
+END

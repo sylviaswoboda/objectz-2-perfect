@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/oz2perfect/!svn/ver/157/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/translator
+END
+TranslateToPerfectTemplates.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/translator/TranslateToPerfectTemplates.java
+END
+TypeEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/translator/TypeEvaluator.java
+END
+ObjectZToPerfectTranslationException.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/oz2perfect/!svn/ver/110/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/translator/ObjectZToPerfectTranslationException.java
+END
+TempVarProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/oz2perfect/!svn/ver/105/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/translator/TempVarProvider.java
+END
+ClassTranslator.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/translator/ClassTranslator.java
+END

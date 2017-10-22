@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/oz2perfect/!svn/ver/144/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/axioms
+END
+Axiom.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/oz2perfect/!svn/ver/160/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/axioms/Axiom.java
+END
+AxiomReference.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/axioms/AxiomReference.java
+END
+AxiomFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/oz2perfect/!svn/ver/112/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/axioms/AxiomFactory.java
+END
+PreconditionAxiom.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/160/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/axioms/PreconditionAxiom.java
+END
+AxiomReferences.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/axioms/AxiomReferences.java
+END
+PostconditionAxiom.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/oz2perfect/!svn/ver/160/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/axioms/PostconditionAxiom.java
+END
+Axioms.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/axioms/Axioms.java
+END

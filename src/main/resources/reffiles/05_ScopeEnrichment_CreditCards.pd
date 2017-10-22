@@ -1,0 +1,56 @@
+class CreditCards ^=
+abstract
+    var c1: CreditCard;
+    var c2: CreditCard;
+    var cards: set of CreditCard;
+
+confined
+    
+    function c1;
+    function c2;
+    function cards;
+
+    schema !set_c1(c1_in:CreditCard)
+        post c1! = c1_in;
+
+    schema !set_c2(c2_in:CreditCard)
+        post c2! = c2_in;
+
+    schema !set_cards(cards_in:set of CreditCard)
+        post cards! = cards_in;
+
+
+
+interface
+
+    operator = (arg);
+
+    build{!c1:CreditCard, !c2:CreditCard, !cards:set of CreditCard}
+    ;
+
+
+
+
+    function withdraw_prec (amount_in:nat, card_in:CreditCard): bool
+        ^= card_in in cards &
+           card_in.withdraw_prec(amount_in);
+    schema !withdraw (amount_in:nat, card_in!:CreditCard)
+        pre withdraw_prec(amount_in, card_in)
+        post card_in!withdraw(amount_in);
+
+
+    function withdrawAux_prec (amount_in:nat): bool
+        ^= (exists card_temp::cards :- (card_temp.withdraw_prec(amount_in)));
+    schema !withdrawAux (amount_in:nat)
+        pre withdrawAux_prec(amount_in)
+        post (var card_temp:CreditCard; (card_temp! = (any tempVar1:CreditCard :- (tempVar1 in cards & tempVar1.withdraw_prec(amount_in))) then
+             card_temp!withdraw(amount_in)));
+
+
+    function withdrawAuxSet_prec (amount_in:nat): bool
+        ^= (exists card_temp::set of CreditCard {c1, c2} :- (card_temp.withdraw_prec(amount_in)));
+    schema !withdrawAuxSet (amount_in:nat)
+        pre withdrawAuxSet_prec(amount_in)
+        post (var card_temp:CreditCard; (card_temp! = (any tempVar2:CreditCard :- (tempVar2 in set of CreditCard {c1, c2} & tempVar2.withdraw_prec(amount_in))) then
+             card_temp!withdraw(amount_in)));
+end;

@@ -1,0 +1,14 @@
+group Perfect;
+
+classDef(className) ::= <<
+class <className> ^= 
+
+abstract
+
+confined
+
+interface
+
+end;
+
+>>

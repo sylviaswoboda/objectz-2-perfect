@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions
+END
+PostconditionFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/PostconditionFactory.java
+END
+ComplexOutputPromotionMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/ComplexOutputPromotionMapping.java
+END
+SimplePostconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/oz2perfect/!svn/ver/133/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/SimplePostconditions.java
+END
+NonDeterministicChoiceItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/NonDeterministicChoiceItem.java
+END
+SimplePostcondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/SimplePostcondition.java
+END
+SimpleSchemaPostcondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/oz2perfect/!svn/ver/133/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/SimpleSchemaPostcondition.java
+END
+ChangeOperationCall.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/ChangeOperationCall.java
+END
+OrderablePostcondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/oz2perfect/!svn/ver/133/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/OrderablePostcondition.java
+END
+ComplexChangePostconditionMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/oz2perfect/!svn/ver/133/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/ComplexChangePostconditionMapping.java
+END
+OutputPromotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/OutputPromotion.java
+END
+SimpleFunctionPostcondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/oz2perfect/!svn/ver/133/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/SimpleFunctionPostcondition.java
+END

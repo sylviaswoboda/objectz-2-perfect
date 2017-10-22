@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/oz2perfect/!svn/ver/143/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/postconditions
+END
+VarPostconditionTemplateTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/postconditions/VarPostconditionTemplateTest.java
+END
+PerfectSchemaPostconditionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/postconditions/PerfectSchemaPostconditionTest.java
+END
+CreateNonDeterministicPostconditionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/oz2perfect/!svn/ver/164/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/postconditions/CreateNonDeterministicPostconditionTest.java
+END
+CreateSatisfyPostconditionForSequentialCompositionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/postconditions/CreateSatisfyPostconditionForSequentialCompositionTest.java
+END
+PerfectFunctionPostconditionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/postconditions/PerfectFunctionPostconditionTest.java
+END
+PostconditionTestMockProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/postconditions/PostconditionTestMockProvider.java
+END

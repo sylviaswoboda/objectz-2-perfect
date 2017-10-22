@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/oz2perfect/!svn/ver/143/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/preconditions
+END
+CreateNonDeterministicPreconditionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/preconditions/CreateNonDeterministicPreconditionTest.java
+END
+CreateExistsPreconditionForCommunicationPreconditionMappingTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 179
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/preconditions/CreateExistsPreconditionForCommunicationPreconditionMappingTest.java
+END
+PerfectPreconditionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/preconditions/PerfectPreconditionTest.java
+END
+PreconditionTestMockProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/preconditions/PreconditionTestMockProvider.java
+END

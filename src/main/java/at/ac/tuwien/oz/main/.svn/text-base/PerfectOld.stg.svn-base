@@ -1,0 +1,48 @@
+group Perfect;
+
+classDef(className, formalParams, inherits, inheritedFields, inheritedInitPredicates, inheritedBuildPredicates, stateDef, initState, abbrDefs, givenTypeDefs, freeTypeDefs, const, operations, comments) ::= <<
+<givenTypeDefs:givenTypeDefinition(); separator="\n">
+<freeTypeDefs:freeTypeDefinition(); separator="\n">
+<abbrDefs:abbrDefinition(); separator="\n">
+class <cName> <formalParams>^= <inherits:inherits()>
+abstract
+    <stateDef.primaryAttributes:vardec(); separator="\n">
+    <const.variables:vardec(); separator="\n">
+    <const.functions:vardec(); separator="\n">
+
+    <stateDef.allInvariants:invariant(); separator="\n">
+    <const.axioms:invariant(); separator="\n">
+confined
+	<stateDef.primaryAttributes:invisGetter(); separator="\n">
+    <const.variables:invisGetter(); separator="\n">
+    <const.functions:invisGetter(); separator="\n">
+    
+	<stateDef.primaryAttributes:invisSetter(); separator="\n">
+	
+    <if(initState.invisibleWithAxioms)><if(inherits)>redefine <endif>function INIT: bool
+    ^= <[inheritedInitPredicates,initState.axioms]; separator=" &\n   ">;<endif>
+    
+    <stateDef.secondaryAttributes:invisSecondary(); separator="\n">
+       
+    <operations:invisOp()>
+interface
+
+    operator = (arg);
+	
+    build{<[stateDef.primaryAttributes, const.variables, const.functions]:buildDecl(); separator=", "><if([stateDef.primaryAttributes, const.variables, const.functions])><if(inheritedFields)>,<endif><endif><inheritedFields:inhBuildDecl(); separator=", ">}
+        <if([stateDef.allInvariants, const.axioms, initState.axioms, inheritedBuildPredicates])>        pre <[stateDef.allInvariants, const.axioms, initState.axioms, inheritedBuildPredicates]; separator=",\n            "><endif>
+        <if(inherits)>        inherits <inherits>{<inheritedFields:varCall(); separator=", ">}<endif>
+        ;
+    
+<if(initState.visibleWithAxioms)>    <if(inherits)>redefine <endif>function INIT: bool
+    ^= <[inheritedInitPredicates,initState.axioms]; separator=" &\n       ">;<endif>
+
+    <[const.variables, const.functions, stateDef.primaryAttributes]:getter(); separator="\n">
+    <stateDef.secondaryAttributes:visSecondary(); separator="\n">
+    <stateDef.primaryAttributes:setter(); separator="\n">
+    
+    <operations:visOp()>
+
+end;
+
+>>

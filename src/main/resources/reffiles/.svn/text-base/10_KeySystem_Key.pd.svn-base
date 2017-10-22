@@ -1,0 +1,48 @@
+class Key ^=
+abstract
+    var rooms: set of Room;
+
+confined
+
+
+
+
+interface
+
+    operator = (arg);
+
+    build{!rooms:set of Room}
+        pre rooms = set of Room {}
+    ;
+    function INIT: bool
+    ^= rooms = set of Room {};
+
+    function rooms;
+
+    schema !set_rooms(rooms_in:set of Room)
+        post rooms! = rooms_in;
+
+
+    function extendAccess_prec (rm_in:Room): bool
+        ^= rm_in ~in rooms &
+           (exists rooms_temp:set of Room :- (rooms_temp = rooms ++ set of Room {rm_in}));
+    schema !extendAccess (rm_in:Room)
+        pre extendAccess_prec(rm_in)
+        post change  rooms
+             satisfy rooms' = rooms ++ set of Room {rm_in};
+
+
+    function rescindAccess_prec (rm_in:Room): bool
+        ^= rm_in in rooms &
+           (exists rooms_temp:set of Room :- (rooms_temp = rooms -- set of Room {rm_in}));
+    schema !rescindAccess (rm_in:Room)
+        pre rescindAccess_prec(rm_in)
+        post change  rooms
+             satisfy rooms' = rooms -- set of Room {rm_in};
+
+    function accessGranted (rm_in:Room): bool
+        ^= rm_in in rooms;
+
+    function accessDenied (rm_in:Room): bool
+        ^= rm_in ~in rooms;
+end;

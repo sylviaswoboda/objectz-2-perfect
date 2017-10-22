@@ -1,0 +1,49 @@
+class Room ^=
+abstract
+    var locked: bool;
+
+confined
+
+
+
+
+interface
+
+    operator = (arg);
+
+    build{!locked:bool}
+        pre locked
+    ;
+    function INIT: bool
+    ^= locked;
+
+    function locked;
+
+    schema !set_locked(locked_in:bool)
+        post locked! = locked_in;
+
+
+    function supplyId_prec : bool
+        ^= (exists rm_temp:Room :- (rm_temp = self));
+    function supplyId rm_out:Room
+        pre supplyId_prec
+        satisfy result.rm_out = self;
+
+
+    function unlock_prec : bool
+        ^= locked &
+           (exists locked_temp:bool :- (~ locked_temp));
+    schema !unlock 
+        pre unlock_prec
+        post change  locked
+             satisfy ~ locked';
+
+
+    function lock_prec : bool
+        ^= ~ locked &
+           (exists locked_temp:bool :- (locked_temp));
+    schema !lock 
+        pre lock_prec
+        post change  locked
+             satisfy locked';
+end;

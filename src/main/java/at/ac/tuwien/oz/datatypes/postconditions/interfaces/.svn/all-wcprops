@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/interfaces
+END
+ICommunicatingAndSharingPostcondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/oz2perfect/!svn/ver/137/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/interfaces/ICommunicatingAndSharingPostcondition.java
+END
+IComposablePostconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/interfaces/IComposablePostconditions.java
+END
+ICompositionFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/interfaces/ICompositionFactory.java
+END
+IPromotingPostcondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/oz2perfect/!svn/ver/137/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/interfaces/IPromotingPostcondition.java
+END
+IPostcondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/oz2perfect/!svn/ver/137/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/interfaces/IPostcondition.java
+END
+ICombinablePostconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/oz2perfect/!svn/ver/137/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/interfaces/ICombinablePostconditions.java
+END
+IPostconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/oz2perfect/!svn/ver/137/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/postconditions/interfaces/IPostconditions.java
+END

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/oz2perfect/!svn/ver/143/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator
+END
+TranslateParallelCompositionToPerfectTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/TranslateParallelCompositionToPerfectTest.java
+END
+TranslateClassTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/oz2perfect/!svn/ver/172/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/TranslateClassTest.java
+END
+TranslateOperationSchemaToPerfectTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/TranslateOperationSchemaToPerfectTest.java
+END
+TranslateOperationPromotionToPerfectTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/TranslateOperationPromotionToPerfectTest.java
+END
+TranslateOperationConjunctionToPerfectTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/TranslateOperationConjunctionToPerfectTest.java
+END
+TranslateSequentialCompositionToPerfect.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/oz2perfect/!svn/ver/168/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/TranslateSequentialCompositionToPerfect.java
+END
+TranslationTestBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/oz2perfect/!svn/ver/168/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/TranslationTestBase.java
+END

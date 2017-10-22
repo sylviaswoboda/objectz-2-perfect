@@ -1,0 +1,32 @@
+class OverrideFunction ^=
+abstract
+    var recensionWall: set of pair of (nat, String);
+
+confined
+
+
+
+
+interface
+
+    operator = (arg);
+
+    build{!recensionWall:set of pair of (nat, String)}
+        pre recensionWall = set of pair of (nat, String) {}
+    ;
+    function INIT: bool
+    ^= recensionWall = set of pair of (nat, String) {};
+
+    function recensionWall;
+
+    schema !set_recensionWall(recensionWall_in:set of pair of (nat, String))
+        post recensionWall! = recensionWall_in;
+
+
+    function postRecension_prec (index_in:nat, recension_in:String): bool
+        ^= (exists recensionWall_temp:set of pair of (nat, String) :- (recensionWall_temp = (those tempVar1::recensionWall :- (exists tempVar2::set of pair of (nat, String) {pair of (nat, String) {index_in, recension_in}} :- tempVar1.x = tempVar2.x)) ++ set of pair of (nat, String) {pair of (nat, String) {index_in, recension_in}}));
+    schema !postRecension (index_in:nat, recension_in:String)
+        pre postRecension_prec(index_in, recension_in)
+        post change  recensionWall
+             satisfy recensionWall' = (those tempVar1::recensionWall :- (exists tempVar2::set of pair of (nat, String) {pair of (nat, String) {index_in, recension_in}} :- tempVar1.x = tempVar2.x)) ++ set of pair of (nat, String) {pair of (nat, String) {index_in, recension_in}};
+end;

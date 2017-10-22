@@ -1,0 +1,34 @@
+class BinaryRelationTest ^=
+abstract
+    var aBinRelation: set of pair of (nat, int);
+    var aCartesian: set of pair of (nat, int);
+    var aPairSequence: seq of pair of (nat, int);
+
+confined
+    
+
+
+
+
+interface
+
+    operator = (arg);
+
+    build{!aBinRelation:set of pair of (nat, int), !aCartesian:set of pair of (nat, int), !aPairSequence:seq of pair of (nat, int)}
+    ;
+
+    function aBinRelation;
+    function aCartesian;
+    function aPairSequence;
+
+    schema !set_aBinRelation(aBinRelation_in:set of pair of (nat, int))
+        post aBinRelation! = aBinRelation_in;
+
+    schema !set_aCartesian(aCartesian_in:set of pair of (nat, int))
+        post aCartesian! = aCartesian_in;
+
+    schema !set_aPairSequence(aPairSequence_in:seq of pair of (nat, int))
+        post aPairSequence! = aPairSequence_in;
+
+
+end;

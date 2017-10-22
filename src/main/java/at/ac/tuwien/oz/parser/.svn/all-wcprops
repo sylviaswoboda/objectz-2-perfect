@@ -1,0 +1,389 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/oz2perfect/!svn/ver/150/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser
+END
+OZParser$StateContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$StateContext.class
+END
+OZParser$InheritedClassListContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$InheritedClassListContext.class
+END
+OZListener.class
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZListener.class
+END
+OZParser$DefinitionContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$DefinitionContext.class
+END
+OZParser$SetOperatorContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/oz2perfect/!svn/ver/104/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$SetOperatorContext.class
+END
+OZLexer.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/oz2perfect/!svn/ver/172/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZLexer.java
+END
+OZ.g4
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/oz2perfect/!svn/ver/163/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZ.g4
+END
+OZParser$LocalDefinitionContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$LocalDefinitionContext.class
+END
+OZParser$LocalDefinitionListContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$LocalDefinitionListContext.class
+END
+OZParser$IdOrNumberContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$IdOrNumberContext.class
+END
+OZParser$OperationExpressionDefContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$OperationExpressionDefContext.class
+END
+OZParser$PredicateContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$PredicateContext.class
+END
+OZParser$PostfixContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$PostfixContext.class
+END
+OZParser$PredicateListContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$PredicateListContext.class
+END
+OZParser$PredefinedTypeContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$PredefinedTypeContext.class
+END
+OZBaseListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/oz2perfect/!svn/ver/172/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZBaseListener.java
+END
+OZParser$OperationSchemaDefContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$OperationSchemaDefContext.class
+END
+OZParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/oz2perfect/!svn/ver/172/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser.java
+END
+OZParser$GivenTypeDefinitionContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$GivenTypeDefinitionContext.class
+END
+OZLexer.class
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZLexer.class
+END
+OZParser$PrefixContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$PrefixContext.class
+END
+OZParser$VisibilityListContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$VisibilityListContext.class
+END
+OZParser$PrimaryContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$PrimaryContext.class
+END
+OZParser$ClassDefContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$ClassDefContext.class
+END
+OZParser$DeclarationContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$DeclarationContext.class
+END
+OZBaseListener.class
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZBaseListener.class
+END
+OZParser$DeclarationListContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$DeclarationListContext.class
+END
+OZParser$FeatureContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$FeatureContext.class
+END
+OZParser$AxiomaticDefinitionContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$AxiomaticDefinitionContext.class
+END
+OZParser$IdContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$IdContext.class
+END
+OZParser$ClassDesContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$ClassDesContext.class
+END
+OZParser$OpExpressionContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$OpExpressionContext.class
+END
+OZLexer.tokens
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZLexer.tokens
+END
+OZParser$RenamePairContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$RenamePairContext.class
+END
+OZParser$PredicateAtomContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$PredicateAtomContext.class
+END
+OZParser$DecorationContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/104/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$DecorationContext.class
+END
+OZParser$SchemaTextContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$SchemaTextContext.class
+END
+OZParser$NameListContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/oz2perfect/!svn/ver/104/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$NameListContext.class
+END
+OZParser$NumberContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$NumberContext.class
+END
+OZParser$AtomExprContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/oz2perfect/!svn/ver/104/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$AtomExprContext.class
+END
+OZParser$AbbreviationDefinitionContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$AbbreviationDefinitionContext.class
+END
+OZParser$RelationInfixOpContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/oz2perfect/!svn/ver/104/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$RelationInfixOpContext.class
+END
+OZParser$PowerSetOpContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$PowerSetOpContext.class
+END
+OZParser$FeatureOrFunctionCallContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$FeatureOrFunctionCallContext.class
+END
+OZParser$RenamingContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$RenamingContext.class
+END
+OZParser$FormalParametersContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$FormalParametersContext.class
+END
+OZParser$FreeTypeDefinitionContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$FreeTypeDefinitionContext.class
+END
+OZParser$ExpressionContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$ExpressionContext.class
+END
+OZParser$GenActualsContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$GenActualsContext.class
+END
+OZParser$OperationListContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$OperationListContext.class
+END
+OZParser$SimplePredicateContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$SimplePredicateContext.class
+END
+OZParser$ProgramContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$ProgramContext.class
+END
+OZParser$DeclarationNameListContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$DeclarationNameListContext.class
+END
+OZParser$SetOpContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$SetOpContext.class
+END
+OZListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/oz2perfect/!svn/ver/172/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZListener.java
+END
+OZParser$IdWithAttrsContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/oz2perfect/!svn/ver/104/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$IdWithAttrsContext.class
+END
+OZParser$InitialStateContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$InitialStateContext.class
+END
+OZParser$OperationExpressionContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$OperationExpressionContext.class
+END
+OZParser.class
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser.class
+END
+OZParser$OpExprAtomContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$OpExprAtomContext.class
+END
+OZParser$InfixComparisonOpContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$InfixComparisonOpContext.class
+END
+OZParser$SchemaDeclarationListContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$SchemaDeclarationListContext.class
+END
+OZ.tokens
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZ.tokens
+END
+OZParser$SecondaryContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/oz2perfect/!svn/ver/107/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/parser/OZParser$SecondaryContext.class
+END

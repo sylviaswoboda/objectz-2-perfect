@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/interfaces
+END
+IComposablePreconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/interfaces/IComposablePreconditions.java
+END
+ICombinablePreconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/interfaces/ICombinablePreconditions.java
+END
+IPreconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/interfaces/IPreconditions.java
+END
+IPrecondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/interfaces/IPrecondition.java
+END

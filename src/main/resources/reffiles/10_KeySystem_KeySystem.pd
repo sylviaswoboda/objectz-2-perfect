@@ -1,0 +1,60 @@
+class KeySystem ^=
+abstract
+    var keys: set of Key;
+    var rooms: set of Room;
+    invariant (forall k::keys :- (k.rooms <<= rooms));
+
+confined
+
+
+
+
+interface
+
+    operator = (arg);
+
+    build{!keys:set of Key, !rooms:set of Room}
+        pre (forall k::keys :- (k.rooms <<= rooms)),
+            (forall k::keys :- (k.INIT)),
+            (forall r::rooms :- (r.INIT))
+    ;
+    function INIT: bool
+    ^= (forall k::keys :- (k.INIT)) &
+       (forall r::rooms :- (r.INIT));
+
+    function keys;
+    function rooms;
+
+    schema !set_keys(keys_in:set of Key)
+        pre  (forall k::keys_in :- (k.rooms <<= rooms))
+        post keys! = keys_in;
+
+    schema !set_rooms(rooms_in:set of Room)
+        pre  (forall k::keys :- (k.rooms <<= rooms_in))
+        post rooms! = rooms_in;
+
+
+    function extendAccess_prec (k_in:Key, rm_in:Room): bool
+        ^= k_in in keys &
+           k_in.extendAccess_prec(rm_in);
+    schema !extendAccess (k_in!:Key, rm_in:Room)
+        pre extendAccess_prec(k_in, rm_in)
+        post k_in!extendAccess(rm_in);
+
+
+    function rescindAccess_prec (k_in:Key, rm_in:Room): bool
+        ^= k_in in keys &
+           k_in.rescindAccess_prec(rm_in);
+    schema !rescindAccess (k_in!:Key, rm_in:Room)
+        pre rescindAccess_prec(k_in, rm_in)
+        post k_in!rescindAccess(rm_in);
+
+
+    function lock_prec : bool
+        ^= (exists r::rooms :- (r.lock_prec));
+    opaque schema !lock
+        pre lock_prec
+        post (var r:Room;
+              (r! = (any tempVar1::rooms :- (tempVar1.lock_prec))) then
+                         r!lock);
+end;

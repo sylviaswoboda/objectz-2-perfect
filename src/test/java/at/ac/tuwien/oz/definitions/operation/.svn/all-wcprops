@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/oz2perfect/!svn/ver/143/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/definitions/operation
+END
+OperationPromotionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/definitions/operation/OperationPromotionTest.java
+END
+SimpleFunctionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/definitions/operation/SimpleFunctionTest.java
+END
+OperationTypeDeterminatorTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/definitions/operation/OperationTypeDeterminatorTest.java
+END
+SimpleChangeOperationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/definitions/operation/SimpleChangeOperationTest.java
+END
+AbstractOperationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/oz2perfect/!svn/ver/134/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/definitions/operation/AbstractOperationTest.java
+END
+SimpleBoolFunctionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/definitions/operation/SimpleBoolFunctionTest.java
+END
+ParallelCompositionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/definitions/operation/ParallelCompositionTest.java
+END
+OperationFromExpressionBuilderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/definitions/operation/OperationFromExpressionBuilderTest.java
+END
+OperationConjunctionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/definitions/operation/OperationConjunctionTest.java
+END

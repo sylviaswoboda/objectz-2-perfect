@@ -1,0 +1,68 @@
+class CreditCard ^=
+abstract
+    var balance: int;
+    var limit: nat;
+    invariant limit > balance;
+    invariant limit in set of nat {1000, 2000, 5000};
+
+confined
+
+
+
+    function isValueSum (value1_in:nat, value2_in:nat): bool
+        ^= value1_in > 0 &
+           value2_in > 10 &
+           balance = value1_in + value2_in;
+
+
+    function getBalanceVal_prec : bool
+        ^= (exists balanceVal_temp:int :- (balanceVal_temp = balance));
+    function getBalanceVal balanceVal_out:int
+        pre getBalanceVal_prec
+        satisfy result.balanceVal_out = balance;
+
+interface
+
+    operator = (arg);
+
+    build{!balance:int, !limit:nat}
+        pre limit > balance,
+            limit in set of nat {1000, 2000, 5000},
+            balance = 0
+    ;
+    function INIT: bool
+    ^= balance = 0;
+
+    function balance;
+    function limit;
+
+    schema !set_balance(balance_in:int)
+        pre  limit > balance_in
+        post balance! = balance_in;
+
+
+    function withdraw_prec (amount_in:nat): bool
+        ^= amount_in <= balance + limit &
+           (exists balance_temp:int :- (balance_temp = balance - amount_in));
+    schema !withdraw (amount_in:nat)
+        pre withdraw_prec(amount_in)
+        post change  balance
+             satisfy balance' = balance - amount_in;
+
+
+    function deposit_prec (amount_in:nat): bool
+        ^= (exists balance_temp:int :- (balance_temp = balance + amount_in));
+    schema !deposit (amount_in:nat)
+        pre deposit_prec(amount_in)
+        post change  balance
+             satisfy balance' = balance + amount_in;
+
+
+    function withdrawAvail_prec : bool
+        ^= (exists balance_temp:int, amount_out:nat :- (amount_out = balance + limit & balance_temp = -limit));
+    schema !withdrawAvail (amount_out!:out nat)
+        pre withdrawAvail_prec
+        post change  balance, amount_out
+             satisfy amount_out' = balance + limit &
+                     balance' = -limit;
+end;

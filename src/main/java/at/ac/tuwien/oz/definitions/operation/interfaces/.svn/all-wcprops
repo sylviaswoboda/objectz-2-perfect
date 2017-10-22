@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/oz2perfect/!svn/ver/144/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/interfaces
+END
+ICombinableOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/oz2perfect/!svn/ver/134/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/interfaces/ICombinableOperation.java
+END
+IOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/oz2perfect/!svn/ver/163/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/interfaces/IOperation.java
+END
+IPromotedOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/interfaces/IPromotedOperation.java
+END
+IComposableOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/definitions/operation/interfaces/IComposableOperation.java
+END

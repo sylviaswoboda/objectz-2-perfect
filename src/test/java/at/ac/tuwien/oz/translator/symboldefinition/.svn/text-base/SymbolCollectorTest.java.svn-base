@@ -1,0 +1,403 @@
+package at.ac.tuwien.oz.translator.symboldefinition;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+import org.antlr.runtime.RecognitionException;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTreeProperty;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
+
+import at.ac.tuwien.oz.datatypes.Declarations;
+import at.ac.tuwien.oz.datatypes.Ident;
+import at.ac.tuwien.oz.datatypes.Idents;
+import at.ac.tuwien.oz.datatypes.Variable;
+import at.ac.tuwien.oz.datatypes.axioms.AxiomReferences;
+import at.ac.tuwien.oz.definitions.ObjectZDefinition;
+import at.ac.tuwien.oz.definitions.operation.Operation;
+import at.ac.tuwien.oz.definitions.operation.SimpleBoolFunction;
+import at.ac.tuwien.oz.definitions.operation.SimpleChangeOperation;
+import at.ac.tuwien.oz.definitions.operation.SimpleFunction;
+import at.ac.tuwien.oz.definitions.operation.interfaces.IOperation;
+import at.ac.tuwien.oz.definitions.ozclass.ObjectZClass;
+import at.ac.tuwien.oz.definitions.ozclass.Operations;
+import at.ac.tuwien.oz.parser.OZLexer;
+import at.ac.tuwien.oz.parser.OZParser;
+import at.ac.tuwien.oz.parser.OZParser.AxiomaticDefinitionContext;
+import at.ac.tuwien.oz.parser.OZParser.OperationSchemaDefContext;
+import at.ac.tuwien.oz.parser.OZParser.ProgramContext;
+
+public class SymbolCollectorTest{
+
+	private IdentifierCollector identifierCollector;
+	private SymbolCollector symbolCollector;
+	private ParseTreeWalker walker;
+	private ParseTreeProperty<Idents> usedIdentifierTree;
+	
+	protected OZParser getParser(CharStream testFileStream) {
+		OZLexer lexer = new OZLexer(testFileStream);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+		OZParser parser = new OZParser(tokens);
+		return parser;
+	}
+	
+	@Before
+	public void setup(){
+		this.usedIdentifierTree = new ParseTreeProperty<Idents>();
+		this.identifierCollector = new IdentifierCollector();
+		this.usedIdentifierTree = identifierCollector.getUsedIdentifierTree();
+		this.symbolCollector = new SymbolCollector(this.usedIdentifierTree);
+		this.walker = new ParseTreeWalker();
+	}
+	
+	@Test
+	public void testSimpleClassIsOnlyClassInDefinition() throws RecognitionException, IOException{
+		parseSimpleClass();
+		
+		ObjectZDefinition globalDefinition = symbolCollector.getObjectZDefinition();
+		
+		Assert.assertNotNull(globalDefinition);
+		
+		Assert.assertEquals(new Ident("objectZprogram"), globalDefinition.getId());
+		Assert.assertNotNull(globalDefinition.getObjectZClasses());
+		Assert.assertEquals(1, globalDefinition.getObjectZClasses().size());
+		
+		ObjectZClass simpleClass = globalDefinition.getObjectZClasses().get(0);
+		Assert.assertEquals(new Ident("SimpleClass"), simpleClass.getId());
+		Assert.assertEquals(globalDefinition, simpleClass.getEnclosingScope());
+		
+		Declarations primary = simpleClass.getPrimaryDeclarations();
+		Assert.assertEquals(1,  primary.size());
+		
+		Variable balanceExpected = primary.get(0);
+		Assert.assertEquals(new Ident("balance"), balanceExpected.getId());
+	}
+
+	@Test
+	public void simpleClassHasConstant() throws RecognitionException, IOException{
+		parseSimpleClass();
+		
+		ObjectZDefinition globalDefinition = symbolCollector.getObjectZDefinition();
+		ObjectZClass simpleClass = globalDefinition.resolveClass(new Ident("SimpleClass"));
+		
+		Declarations constants = simpleClass.getAxiomaticDeclarations();
+		Assert.assertEquals(1,  constants.size());
+		
+		Variable limitConstant = constants.get(0);
+		Assert.assertEquals(new Ident("limit"), limitConstant.getId());
+		
+		Variable limitSymbol = simpleClass.resolveConstant(new Ident("limit"));
+		Assert.assertEquals(limitConstant, limitSymbol);
+		
+		AxiomReferences constantAxiomReferences = simpleClass.getAxiomaticReferences();
+		Assert.assertEquals(1, constantAxiomReferences.size());
+		Assert.assertTrue(constantAxiomReferences.get(0).isPrecondition());
+	}
+
+	
+	@Test
+	public void simpleClassHasPrimaryVariable() throws RecognitionException, IOException{
+		parseSimpleClass();
+		
+		ObjectZDefinition globalDefinition = symbolCollector.getObjectZDefinition();
+		ObjectZClass simpleClass = globalDefinition.resolveClass(new Ident("SimpleClass"));
+		
+		Declarations primary = simpleClass.getPrimaryDeclarations();
+		Assert.assertEquals(1,  primary.size());
+		
+		Variable balancePrimary = primary.get(0);
+		Assert.assertEquals(new Ident("balance"), balancePrimary.getId());
+		
+		Variable balanceSymbol = simpleClass.resolveVariable(new Ident("balance"));
+		Assert.assertEquals(balancePrimary, balanceSymbol);
+	}
+	
+	@Test
+	public void simpleClassHasNoSecondaryVariable() throws RecognitionException, IOException{
+		parseSimpleClass();
+		
+		ObjectZDefinition globalDefinition = symbolCollector.getObjectZDefinition();
+		ObjectZClass simpleClass = globalDefinition.resolveClass(new Ident("SimpleClass"));
+		
+		Declarations secondary = simpleClass.getSecondaryDeclarations();
+		Assert.assertEquals(0,  secondary.size());
+	}
+
+	@Test
+	public void simpleClassHasStateAxiomReferences() throws RecognitionException, IOException{
+		parseSimpleClass();
+		
+		ObjectZDefinition globalDefinition = symbolCollector.getObjectZDefinition();
+		ObjectZClass simpleClass = globalDefinition.resolveClass(new Ident("SimpleClass"));
+		
+		AxiomReferences stateAxiomReferencs = simpleClass.getStateAxiomReferences();
+		Assert.assertEquals(2,  stateAxiomReferencs.size());
+		Idents expectedIdentifers1 = new Idents(new Ident("x"), new Ident("limit"), new Ident("balance"));
+		Idents expectedIdentifers2 = new Idents(new Ident("limit"), new Ident("balance"));
+		
+		Assert.assertEquals(expectedIdentifers1, stateAxiomReferencs.get(0).getUsedIdentifiers());
+		Assert.assertEquals(expectedIdentifers2, stateAxiomReferencs.get(1).getUsedIdentifiers());
+		
+		Assert.assertTrue(stateAxiomReferencs.get(0).isPrecondition());
+		Assert.assertTrue(stateAxiomReferencs.get(1).isPrecondition());
+	}
+
+	
+	@Test
+	public void simpleClassHasVisibleFeatures() throws RecognitionException, IOException{
+		parseSimpleClass();
+		
+		ObjectZDefinition globalDefinition = symbolCollector.getObjectZDefinition();
+		ObjectZClass simpleClass = globalDefinition.resolveClass(new Ident("SimpleClass"));
+		
+		List<Ident> visibleFeatures = simpleClass.getVisibleFeatures();
+		Assert.assertEquals(6,  visibleFeatures.size());
+		Assert.assertEquals(new Ident("limit"),  visibleFeatures.get(0));
+		Assert.assertEquals(new Ident("balance"),  visibleFeatures.get(1));
+		Assert.assertEquals(new Ident("INIT"),  visibleFeatures.get(2));
+		Assert.assertEquals(new Ident("withdraw"),  visibleFeatures.get(3));
+		Assert.assertEquals(new Ident("deposit"),  visibleFeatures.get(4));
+		Assert.assertEquals(new Ident("withdrawAvail"),  visibleFeatures.get(5));
+	}
+	
+	@Test
+	public void simpleClassHasInitSchema() throws RecognitionException, IOException{
+		parseSimpleClass();
+		
+		ObjectZDefinition globalDefinition = symbolCollector.getObjectZDefinition();
+		ObjectZClass simpleClass = globalDefinition.resolveClass(new Ident("SimpleClass"));
+		
+		AxiomReferences initialAxiomReferences = simpleClass.getInitialAxiomReferences();
+		Assert.assertEquals(1,  initialAxiomReferences.size());
+		Assert.assertTrue(initialAxiomReferences.get(0).isPrecondition());
+	}
+	
+	@Test
+	public void simpleClassHasThreeOperations() throws IOException{
+		parseSimpleClass();
+		
+		ObjectZDefinition globalDefinition = symbolCollector.getObjectZDefinition();
+		ObjectZClass simpleClass = globalDefinition.resolveClass(new Ident("SimpleClass"));
+		
+		Operations classOperations = simpleClass.getOperations();
+		Assert.assertEquals(3, classOperations.size());
+
+		Assert.assertEquals(new Ident("aBoolFunction"), classOperations.get(0).getId());
+		Assert.assertEquals(new Ident("aFunction"), classOperations.get(1).getId());
+		Assert.assertEquals(new Ident("aSchema"), classOperations.get(2).getId());
+		
+	}
+
+	@Test
+	public void simpleClassHasABoolFunction() throws IOException{
+		parseSimpleClass();
+		
+		ObjectZDefinition globalDefinition = symbolCollector.getObjectZDefinition();
+		ObjectZClass simpleClass = globalDefinition.resolveClass(new Ident("SimpleClass"));
+		
+		IOperation aBoolFunction = simpleClass.resolveOperation(new Ident("aBoolFunction"));
+		Declarations inputParameters = aBoolFunction.getInputParameters();
+		Assert.assertEquals(3, inputParameters.size());
+		Variable house = inputParameters.get(0);
+		Variable value1 = inputParameters.get(1);
+		Variable value2 = inputParameters.get(2);
+		
+		Assert.assertEquals("house", house.getId().getName());
+		Assert.assertTrue(house.getId().isInputIdent());
+		Assert.assertNull(house.getExpressionType());
+		Assert.assertNotNull(house.getTypeCtx());
+		Assert.assertEquals("House", house.getTypeCtx().getText());
+		
+		Assert.assertEquals("value1", value1.getId().getName());
+		Assert.assertTrue(value1.getId().isInputIdent());
+		Assert.assertNull(value1.getExpressionType());
+		Assert.assertNotNull(value1.getTypeCtx());
+		Assert.assertEquals("!N", value1.getTypeCtx().getText());
+		
+		Assert.assertEquals("value2", value2.getId().getName());
+		Assert.assertTrue(value2.getId().isInputIdent());
+		Assert.assertNull(value2.getExpressionType());
+		Assert.assertNotNull(value2.getTypeCtx());
+		Assert.assertEquals("!N", value2.getTypeCtx().getText());
+		
+		Declarations outputParameters = aBoolFunction.getOutputParameters();
+		Assert.assertTrue(outputParameters.isEmpty());
+
+		Declarations auxiliaryParameters = aBoolFunction.getAuxiliaryParameters();
+		Assert.assertTrue(auxiliaryParameters.isEmpty());
+		
+		Assert.assertTrue(aBoolFunction.isBoolFunction());
+	}
+	
+	@Test
+	public void simpleClassHasAnAxiomaticVariableDefinition(){
+		String input = "const {"
+				+ 	"limit: !N;"
+				+ "}";
+		CharStream testInputStream = CharStreams.fromString(input);
+		
+		OZParser parser = getParser(testInputStream);
+		
+		AxiomaticDefinitionContext tree = parser.axiomaticDefinition();
+		walker.walk(identifierCollector, tree);
+		
+		ObjectZClass currentClass = Mockito.mock(ObjectZClass.class);
+		symbolCollector.currentScope = currentClass;
+		symbolCollector.currentClass = currentClass;
+		
+		walker.walk(symbolCollector, tree);
+		
+		ArgumentCaptor<AxiomReferences> axiomReferencesCaptor = ArgumentCaptor.forClass(AxiomReferences.class);
+		ArgumentCaptor<Declarations> declarationCaptor = ArgumentCaptor.forClass(Declarations.class);
+		Mockito.verify(currentClass).addAxiomaticReferences(axiomReferencesCaptor.capture());
+		Mockito.verify(currentClass).addAxiomaticDeclarations(declarationCaptor.capture());
+		
+		Assert.assertEquals(0, axiomReferencesCaptor.getValue().size());
+		
+		Declarations capturedValue = declarationCaptor.getValue();
+		Assert.assertTrue(capturedValue.contains(Variable.createUndecoratedVariable("limit", null)));
+	}
+	
+	@Test 
+	public void getBoolFunctionOperation(){
+		Variable inputVar = Variable.createInputVariable("inputVar", null);
+		ObjectZClass currentClass = Mockito.mock(ObjectZClass.class);
+		
+		String input = "boolFunc1 {"
+						+ 	"inputVar?: !N;"
+						+	"inputVar? < 200;"
+						+ "}";
+		
+		Operation boolFunc1 = buildOperation(currentClass, input);
+
+		Assert.assertEquals(SimpleBoolFunction.class, boolFunc1.getClass());
+		Assert.assertEquals("boolFunc1", boolFunc1.getName());
+		Assert.assertTrue(boolFunc1.isBoolFunction());
+		Assert.assertFalse(boolFunc1.isFunction());
+		Assert.assertFalse(boolFunc1.isChangeOperation());
+
+		Assert.assertEquals(new Declarations(inputVar), boolFunc1.getInputParameters());
+		Assert.assertEquals(Declarations.empty(), boolFunc1.getOutputParameters());
+		Assert.assertEquals(Declarations.empty(), boolFunc1.getAuxiliaryParameters());
+		
+		AxiomReferences preconditionReferences = boolFunc1.getPreconditionAxiomReferences();
+		Assert.assertEquals(1, preconditionReferences.size());
+		Assert.assertTrue(preconditionReferences.get(0).isPrecondition());
+		
+		AxiomReferences postconditionReferences = boolFunc1.getPostconditionAxiomReferences();
+		Assert.assertEquals(0, postconditionReferences.size());
+	}
+
+	@Test 
+	public void getFunctionOperation(){
+		Variable inputVar = Variable.createInputVariable("inputVar", null);
+		Variable outputVar = Variable.createOutputVariable("outputVar", null);
+		ObjectZClass currentClass = Mockito.mock(ObjectZClass.class);
+		
+		String input = "func1 {"
+						+ 	"inputVar?: !N;"
+						+ 	"outputVar!: !N;"
+						+	"inputVar? < 200;"
+						+	"outputVar! = 200 - inputVar?;"
+						+ "}";
+		
+		Operation func1 = buildOperation(currentClass, input);
+
+		Assert.assertEquals(SimpleFunction.class, func1.getClass());
+		Assert.assertEquals("func1", func1.getName());
+		Assert.assertFalse(func1.isBoolFunction());
+		Assert.assertTrue(func1.isFunction());
+		Assert.assertFalse(func1.isChangeOperation());
+
+		Assert.assertEquals(new Declarations(inputVar), func1.getInputParameters());
+		Assert.assertEquals(new Declarations(outputVar), func1.getOutputParameters());
+		Assert.assertEquals(Declarations.empty(), func1.getAuxiliaryParameters());
+		
+		AxiomReferences preconditionReferences = func1.getPreconditionAxiomReferences();
+		Assert.assertEquals(1, preconditionReferences.size());
+		Assert.assertTrue(preconditionReferences.get(0).isPrecondition());
+		
+		AxiomReferences postconditionReferences = func1.getPostconditionAxiomReferences();
+		Assert.assertEquals(1, postconditionReferences.size());
+		Assert.assertTrue(postconditionReferences.get(0).isPostcondition());
+	}
+	
+	@Test 
+	public void getChangeOperation(){
+		Variable inputVar = Variable.createInputVariable("inputVar", null);
+		Variable outputVar = Variable.createOutputVariable("outputVar", null);
+		ObjectZClass currentClass = Mockito.mock(ObjectZClass.class);
+		
+		String input = "changeOp {"
+						+   "delta(stateVar1)"
+						+ 	"inputVar?: !N;"
+						+ 	"outputVar!: !N;"
+						+	"inputVar? < 200;"
+						+	"outputVar! = 200 - inputVar?;"
+						+ "}";
+		
+		Operation changeOp = buildOperation(currentClass, input);
+
+		Assert.assertEquals(SimpleChangeOperation.class, changeOp.getClass());
+		Assert.assertEquals("changeOp", changeOp.getName());
+		Assert.assertFalse(changeOp.isBoolFunction());
+		Assert.assertFalse(changeOp.isFunction());
+		Assert.assertTrue(changeOp.isChangeOperation());
+		
+		Assert.assertEquals(Arrays.asList("stateVar1"), changeOp.getDeltalist());
+
+		Assert.assertEquals(new Declarations(inputVar), changeOp.getInputParameters());
+		Assert.assertEquals(new Declarations(outputVar), changeOp.getOutputParameters());
+		Assert.assertEquals(Declarations.empty(), changeOp.getAuxiliaryParameters());
+		
+		AxiomReferences preconditionReferences = changeOp.getPreconditionAxiomReferences();
+		Assert.assertEquals(1, preconditionReferences.size());
+		Assert.assertTrue(preconditionReferences.get(0).isPrecondition());
+		
+		AxiomReferences postconditionReferences = changeOp.getPostconditionAxiomReferences();
+		Assert.assertEquals(1, postconditionReferences.size());
+		Assert.assertTrue(postconditionReferences.get(0).isPostcondition());
+	}
+
+	
+	private Operation buildOperation(ObjectZClass currentClass, String input) {
+		CharStream testInputStream = CharStreams.fromString(input);
+		
+		OZParser tree = getParser(testInputStream);
+		
+		OperationSchemaDefContext operationSchemaDef = tree.operationSchemaDef();
+		
+		walker.walk(identifierCollector, operationSchemaDef);
+		
+		symbolCollector.currentScope = currentClass;
+		symbolCollector.currentClass = currentClass;
+		
+		walker.walk(symbolCollector, operationSchemaDef);
+		
+		ArgumentCaptor<Operation> operationCaptor = ArgumentCaptor.forClass(Operation.class);
+		Mockito.verify(currentClass).addOperation(operationCaptor.capture());
+		Operation boolFunc1 = operationCaptor.getValue();
+		return boolFunc1;
+	}
+
+	
+	private void parseSimpleClass() throws IOException {
+		String testFileName = "src/resources/testfiles/symboldefinition/SimpleClass.oz";
+		
+		CharStream testFileStream = CharStreams.fromFileName(testFileName);
+		OZParser parser = getParser(testFileStream);
+		
+		ProgramContext tree = parser.program();	
+		walker.walk(identifierCollector, tree);
+		walker.walk(symbolCollector, tree);
+	}
+
+}

@@ -1,0 +1,79 @@
+class TwoCards ^=
+abstract
+    var c1: CreditCard;
+    var c2: CreditCard;
+    invariant c1 ~= c2;
+
+confined
+    function c1;
+    function c2;
+
+    schema !set_c1(c1_in:CreditCard)
+        pre  c1_in ~= c2
+        post c1! = c1_in;
+
+    schema !set_c2(c2_in:CreditCard)
+        pre  c1 ~= c2_in
+        post c2! = c2_in;
+
+
+
+interface
+
+    operator = (arg);
+
+    build{!c1:CreditCard, !c2:CreditCard}
+        pre c1 ~= c2,
+            c1.INIT,
+            c2.INIT
+    ;
+    function INIT: bool
+    ^= c1.INIT &
+       c2.INIT;
+
+
+
+    function totalbal:int
+        satisfy result = c1.balance + c2.balance;
+
+    function replaceCard1_prec (card_in:CreditCard): bool
+        ^= card_in ~in set of CreditCard {c1, c2} &
+           card_in.limit = c1.limit &
+           card_in.balance = c1.balance &
+           (exists c1_temp:CreditCard :- (c1_temp = card_in));
+    schema !replaceCard1 (card_in:CreditCard)
+        pre replaceCard1_prec(card_in)
+        post change  c1
+             satisfy c1' = card_in;
+
+
+    function withdraw1_prec (amount_in:nat): bool
+        ^= c1.withdraw_prec(amount_in);
+    schema !withdraw1 (amount_in:nat)
+        pre withdraw1_prec(amount_in)
+        post c1!withdraw(amount_in);
+
+
+    function transfer_prec (amount_in:nat): bool
+        ^= c1.withdraw_prec(amount_in) &
+           c2.deposit_prec(amount_in);
+    schema !transfer (amount_in:nat)
+        pre transfer_prec(amount_in)
+        post c1!withdraw(amount_in) &
+             c2!deposit(amount_in);
+
+
+    function withdrawEither_prec (amount_in:nat): bool
+        ^= c1.withdraw_prec(amount_in) | c2.withdraw_prec(amount_in);
+    opaque schema !withdrawEither (amount_in:nat)
+        pre withdrawEither_prec(amount_in)
+        post ([c1.withdraw_prec(amount_in)]: c1!withdraw(amount_in), [c2.withdraw_prec(amount_in)]: c2!withdraw(amount_in));
+
+
+    function transferAvail_prec : bool
+        ^= c1.withdrawAvail_prec &
+           (exists tempVar2:nat :- (tempVar2 = c1.withdrawAvail_post.amount_out & c2.deposit_prec(tempVar2)));
+    schema !transferAvail 
+        pre transferAvail_prec
+        post (var tempVar1:nat; (c1!withdrawAvail(tempVar1!) & c2!deposit(tempVar1')));
+end;

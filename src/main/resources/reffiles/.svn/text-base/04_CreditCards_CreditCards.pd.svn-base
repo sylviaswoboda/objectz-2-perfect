@@ -1,0 +1,85 @@
+class CreditCards ^=
+abstract
+    var cards: set of CreditCard;
+    var commonlimit: nat;
+    invariant (forall c::cards :- (c.limit = commonlimit));
+    invariant commonlimit in set of nat {1000, 2000, 5000};
+
+confined
+    function cards;
+
+    schema !set_cards(cards_in:set of CreditCard)
+        pre  (forall c::cards_in :- (c.limit = commonlimit))
+        post cards! = cards_in;
+
+
+
+interface
+
+    operator = (arg);
+
+    build{!cards:set of CreditCard, !commonlimit:nat}
+        pre (forall c::cards :- (c.limit = commonlimit)),
+            commonlimit in set of nat {1000, 2000, 5000},
+            cards = set of CreditCard {}
+    ;
+    function INIT: bool
+    ^= cards = set of CreditCard {};
+
+    function commonlimit;
+
+
+
+    function add_prec (card_in:CreditCard): bool
+        ^= card_in ~in cards &
+           card_in.limit = commonlimit &
+           card_in.INIT &
+           (exists cards_temp:set of CreditCard :- (cards_temp = cards ++ set of CreditCard {card_in}));
+    schema !add (card_in:CreditCard)
+        pre add_prec(card_in)
+        post change  cards
+             satisfy cards' = cards ++ set of CreditCard {card_in};
+
+
+    function delete_prec (card_in:CreditCard): bool
+        ^= card_in in cards &
+           (exists cards_temp:set of CreditCard :- (cards_temp = cards -- set of CreditCard {card_in}));
+    schema !delete (card_in:CreditCard)
+        pre delete_prec(card_in)
+        post change  cards
+             satisfy cards' = cards -- set of CreditCard {card_in};
+
+
+    function withdraw_prec (amount_in:nat, card_in:CreditCard): bool
+        ^= card_in in cards &
+           card_in.withdraw_prec(amount_in);
+    schema !withdraw (amount_in:nat, card_in!:CreditCard)
+        pre withdraw_prec(amount_in, card_in)
+        post card_in!withdraw(amount_in);
+
+
+    function deposit_prec (amount_in:nat, card_in:CreditCard): bool
+        ^= card_in in cards &
+           card_in.deposit_prec(amount_in);
+    schema !deposit (amount_in:nat, card_in!:CreditCard)
+        pre deposit_prec(amount_in, card_in)
+        post card_in!deposit(amount_in);
+
+
+    function withdrawAvail_prec (card_in:CreditCard): bool
+        ^= card_in in cards &
+           card_in.withdrawAvail_prec;
+    schema !withdrawAvail (card_in!:CreditCard, amount_out!:out nat)
+        pre withdrawAvail_prec(card_in)
+        post card_in!withdrawAvail(amount_out!);
+
+
+    function transferAvail_prec (from_in:CreditCard, to_in:CreditCard): bool
+        ^= from_in in cards &
+           to_in in cards &
+           from_in.withdrawAvail_prec &
+           (exists tempVar3:nat :- (tempVar3 = from_in.withdrawAvail_post.amount_out & to_in.deposit_prec(tempVar3)));
+    schema !transferAvail (from_in!:CreditCard, to_in!:CreditCard)
+        pre transferAvail_prec(from_in, to_in)
+        post (var tempVar4:nat; (from_in!withdrawAvail(tempVar4!) & to_in!deposit(tempVar4')));
+end;

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/combinable
+END
+CommunicationPreconditionMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/combinable/CommunicationPreconditionMapping.java
+END
+CommunicationPrecondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/combinable/CommunicationPrecondition.java
+END
+EmptyPreconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/combinable/EmptyPreconditions.java
+END
+CompositePreconditionFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/combinable/CompositePreconditionFactory.java
+END
+PreconditionFunctionCalls.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/oz2perfect/!svn/ver/159/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/combinable/PreconditionFunctionCalls.java
+END
+CompositePreconditionDataCollector.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/java/at/ac/tuwien/oz/datatypes/preconditions/combinable/CompositePreconditionDataCollector.java
+END

@@ -1,0 +1,34 @@
+// local given type, free type and abbreviation definitions
+class Key ^= 
+abstract
+
+    // declarations of primary state variables go
+    // declarations of constants go here
+
+    // invariants from state variables and state functions and implicit invariants
+    // from axiomatic definition
+confined
+    // redeclare getter (and setter) for all non-visible state variables and constants here
+    // add function INIT here if INIT is declared non-visible
+    
+    // declarations of secondary state variables go here
+       
+    // add all non-visible operations here to make them available for inheritance
+interface
+
+	operator = (arg);
+	
+    build{}
+        ;
+    
+    // add function init if init is declared visible
+
+    // getter function for all visible constants, primary and secondary variables, setter for primary state variables
+    
+    // declare all visible operations here
+     
+    function supplyId key_out:Key
+        satisfy result.key_out = self; 
+
+
+end;

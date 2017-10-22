@@ -1,0 +1,187 @@
+// operations
+boolFunction(operationName, inputDeclarations, preconditions) ::= <<
+function <operationName> <inputDeclarations>: bool
+    ^= <preconditions; separator=" \&\n       ">;
+>>
+
+function(operationName, opaque, inputDeclarations, outputDeclarations, preconditionOpCall, postconditions) ::= <<
+<opaque>function <operationName> <inputDeclarations><outputDeclarations>
+<if(preconditionOpCall)>    pre <preconditionOpCall><endif>
+    satisfy <postconditions; separator=" &\n            ">;
+>>
+
+changeOperation(operationName, opaque, inputAndOutputDeclarations, preconditionOpCall, deltalist, postconditions) ::= <<
+<opaque>schema !<operationName> <inputAndOutputDeclarations>
+<if(preconditionOpCall)>    pre <preconditionOpCall><endif>
+    post change  <deltalist>
+         satisfy <postconditions; separator=" &\n                 ">;
+>>
+
+promotedChangeOperation(operationName, opaque, inputAndOutputDeclarations, preconditionOpCall, postconditions) ::= <<
+<opaque>schema !<operationName> <inputAndOutputDeclarations>
+<if(preconditionOpCall)>    pre <preconditionOpCall><endif>
+    post <postconditions; separator=" &\n         ">;
+>>
+
+operationWithPreconditionOp(postconditionOp, preconditionOp, operation) ::= <<
+<if(postconditionOp)><postconditionOp><endif>
+<if(preconditionOp)><preconditionOp><endif>
+<operation>
+>>
+
+preconditionOpCall(caller, operationName, inputParameters) ::= "<caller><operationName><inputParameters>"
+
+outputVariableFunctionCall(caller, operationName, inputParameters, outputVariable) ::= "<caller><operationName><inputParameters>.<outputVariable>"
+
+schemaCall(caller, operationName, parameterList) ::= "<caller>!<operationName><parameterList>"
+
+
+postconditionWithDeclarations(declarations, predicates) ::= "(var <declarations>; (<predicates>))"
+
+
+
+// old
+boolFunctionOpOld(operationObj) ::= << 
+<if(operationObj.ghost)>ghost <endif>function <operationObj.name> <if(!operationObj.inVars.empty)>(<operationObj.inVars:vardeclFunc(); separator=", ">)<endif>: bool
+    ^= <operationObj.preconditionOutput; separator=" \&\n       ">; >>
+
+functionOp(operationObj) ::= << 
+<if(operationObj.ghost)>ghost <endif>function <operationObj.name> <if(!operationObj.inVars.empty)>(<operationObj.inVars:vardeclFunc(); separator=", ">)<endif><if(!operationObj.outVars.empty)><operationObj.outVars:vardeclFunc(); separator=", "><endif>
+<if(!operationObj.preconditionOutput.empty)>    pre <operationObj.preconditionName><if(!operationObj.inVars.empty)>(<operationObj.inVars:varCall(); separator=", ">)<endif><endif>
+    satisfy <operationObj.postconditions; separator=" ,\n            ">; >>
+
+changeOp(operationObj) ::= << 
+schema !<operationObj.name> <if(operationObj.nonEmptyParameters)>(<[operationObj.inVars,operationObj.outVars]:vardeclSchema(); separator=", ">)<endif>
+<if(!operationObj.preconditionOutput.empty)>    pre <operationObj.preconditionName><if(!operationObj.inVars.empty)>(<operationObj.inVars:varCall(); separator=", ">)<endif><endif>
+    post change  <[operationObj.deltalist, operationObj.outVarIdents]:id(); separator=", ">
+         satisfy <operationObj.postconditions; separator=" ,\n                 ">; >>
+
+opPromo(operationObj) ::= << 
+<if(operationObj.operationTypeFunction)><if(operationObj.preconditionOp)><operationObj.preconditionOp:boolFunctionOp()><endif>
+function <operationObj.name> <if(!operationObj.inVars.empty)>(<operationObj.inVars:vardeclFunc(); separator=", ">)<endif> <if(!operationObj.outVars.empty)><operationObj.outVars:vardeclFunc(); separator=", "><endif>
+<if(!operationObj.preconditionOutput.empty)>    pre <operationObj.preconditionCallTemplate; separator=",\n        "><endif>
+    satisfy <operationObj.postconditionOutput; separator=",\n            ">;
+<elseif(operationObj.operationTypeBoolFunction)>function <operationObj.name> <if(!operationObj.inVars.empty)>(<operationObj.inVars:vardeclFunc(); separator=", ">)<endif>: bool
+    ^= <operationObj.preconditionOutput; separator=" &\n       ">;
+<elseif(operationObj.operationTypeSchema)><if(!operationObj.preconditions.empty)><operationObj.preconditionOp:boolFunctionOp()><endif>
+schema !<operationObj.name> <if(operationObj.nonEmptyParameters)>(<[operationObj.inVars, operationObj.outVars]:vardeclSchema(); separator=", ">)<endif>
+<if(!operationObj.preconditionOutput.empty)>    pre <operationObj.preconditionCallTemplate><endif>
+    post <operationObj.postconditionOutput; separator=",\n             ">;
+<endif> >>
+
+nonDetChoiceOp(operationObj) ::= <<
+<if(operationObj.operationTypeFunction)><if(!operationObj.preconditions.empty)><operationObj.preconditionOp:boolFunctionOp()><endif>
+<if(operationObj.opaque)>opaque <endif>function <operationObj.name> <if(!operationObj.inVars.empty)>(<operationObj.inVars:vardeclFunc(); separator=", ">)<endif> <if(!operationObj.outVars.empty)><operationObj.outVars:vardeclFunc(); separator=", "><endif>
+<if(!operationObj.preconditions.empty)>    pre <operationObj.preconditionName><if(!operationObj.inVars.empty)>(<operationObj.inVars:varCall(); separator=", ">)<endif><endif>
+    satisfy <operationObj.postconditions; separator=",\n            ">;
+<elseif(operationObj.operationTypeBoolFunction)>function <operationObj.name> <if(!operationObj.inVars.empty)>(<operationObj.inVars:vardeclFunc(); separator=", ">)<endif>: bool
+    ^= <operationObj.preconditionOutput; separator=" &\n       ">;
+<elseif(operationObj.operationTypeSchema)><if(!operationObj.preconditions.empty)><operationObj.preconditionOp:boolFunctionOp()><endif>
+<if(operationObj.opaque)>opaque <endif>schema !<operationObj.name> <if(operationObj.nonEmptyParameters)>(<[operationObj.inVars, operationObj.outVars]:vardeclSchema(); separator=", ">)<endif>
+<if(!operationObj.preconditions.empty)>    pre <operationObj.preconditionName><if(!operationObj.inVars.empty)>(<operationObj.inVars:varCall(); separator=", ">)<endif><endif>
+    post <operationObj.postconditions; separator=",\n             ">;
+<endif> >>
+
+parCompOp(operationObj) ::= <<
+<if(operationObj.operationTypeFunction)><if(!operationObj.preconditionOutput.empty)><operationObj.preconditionOp:boolFunctionOp()><endif>
+function <operationObj.name> <if(!operationObj.inVars.empty)>(<operationObj.inVars:vardeclFunc(); separator=", ">)<endif> <if(!operationObj.outVars.empty)><operationObj.outVars:vardeclFunc(); separator=", "><endif>
+<if(!operationObj.preconditionOutput.empty)>    pre <operationObj.preconditionName><if(!operationObj.inVars.empty)>(<operationObj.inVars:varCall(); separator=", ">)<endif><endif>
+    satisfy <operationObj.postconditionOutput; separator=",\n            ">;
+<elseif(operationObj.operationTypeBoolFunction)>function <operationObj.name> <if(!operationObj.inVars.empty)>(<operationObj.inVars:vardeclFunc(); separator=", ">)<endif>: bool
+    ^= <operationObj.preconditionOutput; separator=" &\n       ">;
+<elseif(operationObj.operationTypeSchema)><if(!operationObj.preconditionOutput.empty)><operationObj.preconditionOp:boolFunctionOp()><endif>
+schema !<operationObj.name> <if(operationObj.nonEmptyParameters)>(<[operationObj.inVars, operationObj.outVars]:vardeclSchema(); separator=", ">)<endif>
+<if(!operationObj.preconditionOutput.empty)>    pre <operationObj.preconditionName><if(!operationObj.inVars.empty)>(<operationObj.inVars:varCall(); separator=", ">)<endif><endif>
+    post <operationObj.postconditionOutput; separator=",\n         ">;
+<endif> >>
+
+satisfyInParallel(exprs) ::= "(<exprs; separator=\",\n           \">)"
+conjunctions(exprs) ::= "<exprs; separator=\" &\n           \">"
+disjunctions(exprs) ::= "<exprs; separator=\" |\n           \">"
+
+varCall(var) ::= "<var.ID:id()>"
+varCallWithExcl(var) ::= "<var.ID:idWithExcl()>"
+result() ::= "result"
+outVarCall(caller, opName, inVars, outVar) ::= 
+	"<caller>.<opName><if(!inVars.empty)>(<inVars:varCall(); separator=\", \">)<endif>.<outVar>"
+outVarCallFunc(func, outVar) ::= "<func>.<outVar>"
+outVarInSchema(expr) ::= "<expr>!"
+identInSchema(expr) ::= "<expr>!"
+identInFunc(expr) ::= "<expr>"
+constructorCall(className, params) ::= "<className>{<params; separator=\", \">}"
+
+schemaCallOld(caller, opName, inVars, outVars, hasVars) ::= 
+	"<caller>!<opName><if(hasVars)>(<if(!inVars.empty)><inVars:varCall(); separator=\", \"><endif><if(!outVars.empty)><if(!inVars.empty)>, <endif><outVars:varCallWithExcl(); separator=\", \"><endif>)<endif>"
+functionCall(caller, opName, inVars) ::=
+	"<if(caller)><caller>.<endif><opName><if(!inVars.empty)>(<inVars:varCall(); separator=\", \">)<endif>"
+
+//functionCallWithOut(caller, opName, inVars, outVars, hasVars) ::=
+//	"<caller>.<opName><if(hasVars)>(<if(!inVars.empty)><inVars:varCall(); separator=\",\"><endif><if(!outVars.empty)>, <outVars:varCallWithExcl(); separator=\", \"><endif>)<endif>"
+
+conditionalGuard(condition, expr) ::= "[<condition>]: <expr>"
+conditionals(conditions) ::= "(<conditions; separator=\",\n          \">)"
+
+
+inherits(iClasses) ::= <<inherits <iClasses; separator=","> >>
+classDes(id, genActuals, renaming) ::= "<id>"
+inhBuildDecl(field) ::= "<field.ID:id()>:<field.type>"
+inheritsConstr(iClasses, fields) ::= <<inherits <iClasses>{<fields:varCall(); separator=", ">}>>
+
+
+vardec(attribute) ::= "var <attribute.name><attribute.decoration>:<attribute.type.template>;"
+invariants(variable) ::= "<variable.invariants:invariant(); separator=\"\n\">"
+invariant(axiom) ::= "invariant <axiom.StringTemplate>;"
+
+postconditionWithVarDecl(vardecl, postcondition) ::= <<(<vardecl; separator=" ">
+          <postcondition; separator=",\n">) >>
+
+
+id(ident) ::= "<if(ident.usingPrefix)>result.<endif><ident.name><ident.decoration><if(ident.usingPrime)>'<endif>"
+//idWithPrime(ident) ::= "<ident.name><ident.decoration>'"
+idWithExcl(ident) ::= "<ident:id()>!"
+init(predicates) ::= ""
+// function call
+callFunction(functionName, params) ::= "<functionName>[<params:id(); separator=\", \">]"
+// attribute access
+attributeAccess(caller, name) ::= "<caller>.<name>"
+
+any(vars, expr) ::= <<(any <vars:boundDecl(); separator=", "> :- (<expr; separator=" & ">))>>
+that(vars, expr) ::= <<(that <vars:boundDecl(); separator=", "> :- (<expr; separator=" & ">))>>
+
+forYield(vars, expr) ::= "(for <vars:boundDecl(); separator=\", \"> yield <expr; separator=\" &\n          \">)"
+forThoseYield(vars, predicate, expr) ::= "for those <vars:boundDecl(); separator=\", \"> :- <predicate; separator=\" & \"> yield <expr; separator=\" &\n          \">"
+
+
+vardeclFunc(var) ::= "<var.name><var.decoration>:<var.type>"
+vardeclSchema(var) ::= "<var.name><var.decoration><if(var.outVar)>!<endif><if(var.changeable)>!<endif>:<var:inOrOutType()>"
+inOrOutType(var) ::= "<if(var.outVar)>out <var.type><else><var.type><endif>"
+
+
+
+
+// templates not used directly from ParseTree
+identity() ::= "self != self"
+enumRef(type, enum) ::= "<type> <enum>"
+
+//simpleRange(left, right) ::= "<left>..<right>"
+//selector(mapName, expr) ::= "<mapName>[<expr>]"
+
+//relationDomain(varName, expr) ::= "(for <varName>::<expr> yield <varName>.x)"
+//relationRange(varName, expr) ::= "(for <varName>::<expr> yield <varName>.y)"
+//countTimes(left, right) ::= "<left> # <right>"
+//maplet(leftType, rightType, left, right) ::= "pair of (<leftType>, <rightType>){<left>, <right>}"
+
+
+
+// helper templates for mapping of operations, declarations a.s.o.
+
+caller(caller) ::= "<caller>."
+
+withExclamation(id) ::= "<id>!"
+outputVariableReference(id) ::= "result.<id>"
+
+declarationInOperation(id, type) ::= "<id>:<type>"
+outVarDeclarationInSchema(id, type) ::= "<id>!:out <type>"
+
+thenPostconditions(exprs) ::= "<exprs; separator=\" then\n         \">"
+opaque() ::= "opaque "

@@ -1,0 +1,8 @@
+class Posn ^=
+abstract
+	var posnValue: int;
+	invariant posnValue in ([0 <= 8]:(0..8).ran, []: set of int{});
+interface
+	build{!posnValue: int}
+		pre posnValue in ([0 <= 8]:(0..8).ran, []: set of int{});
+end;

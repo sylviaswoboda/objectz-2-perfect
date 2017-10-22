@@ -1,0 +1,77 @@
+// local given type, free type and abbreviation definitions
+class CreditCard ^= 
+abstract
+
+    // declarations of primary state variables go
+    var balance:int;
+    // declarations of constants go here
+    var limit:nat;
+
+    // invariants from state variables and state functions and implicit invariants
+    invariant limit > balance;
+    // from axiomatic definition
+    invariant limit in set of nat {1000, 2000, 5000};
+confined
+    // redeclare getter (and setter) for all non-visible state variables and constants here
+    // add function INIT here if INIT is declared non-visible
+    
+    // declarations of secondary state variables go here
+       
+    // add all non-visible operations here to make them available for inheritance
+     
+    function isValueSum (value1_in:nat, value2_in:nat): bool
+        ^= value1_in > 0 &
+           value2_in > 10 &
+           balance = value1_in + value2_in; 
+     
+    function getBalanceVal balanceVal_out:int
+        satisfy result.balanceVal_out = balance; 
+
+
+interface
+
+	operator = (arg);
+	
+    build{!balance:int, !limit:nat}
+        pre limit > balance,
+            limit in set of nat {1000, 2000, 5000},
+            balance = 0
+        ;
+    
+    // add function init if init is declared visible
+    function INIT: bool
+    ^= balance = 0;
+
+    // getter function for all visible constants, primary and secondary variables, setter for primary state variables
+    function limit;
+    function balance;
+    schema !set_balance(balance_in:int) 	
+        pre  limit > balance_in
+        post balance! = balance_in;
+    
+    // declare all visible operations here
+     
+    ghost function withdraw_prec (amount_in:nat): bool
+        ^= amount_in <= balance + limit; 
+     
+    schema !withdraw (amount_in:nat)
+        pre withdraw_prec(amount_in)
+        post change  balance
+             satisfy balance' = balance - amount_in; 
+
+     
+    schema !deposit (amount_in:nat)
+        post change  balance
+             satisfy balance' = balance + amount_in; 
+
+     
+    function withdrawAvail_post amount_out:nat
+        satisfy result.amount_out = balance + limit; 
+     
+    schema !withdrawAvail (amount_out!:out nat)
+        post change  balance, amount_out
+             satisfy amount_out' = balance + limit ,
+                     balance' = -limit; 
+
+
+end;

@@ -1,0 +1,185 @@
+// local given type, free type and abbreviation definitions
+class Room ^= 
+abstract
+
+    // declarations of primary state variables go
+    var locked:bool;
+    // declarations of constants go here
+
+    // invariants from state variables and state functions and implicit invariants
+    // from axiomatic definition
+confined
+    // redeclare getter (and setter) for all non-visible state variables and constants here
+    // add function INIT here if INIT is declared non-visible
+    
+    // declarations of secondary state variables go here
+       
+    // add all non-visible operations here to make them available for inheritance
+interface
+
+	operator = (arg);
+	
+    build{!locked:bool}
+        pre locked
+        ;
+    
+    // add function init if init is declared visible
+    function INIT: bool
+    ^= locked;
+
+    // getter function for all visible constants, primary and secondary variables, setter for primary state variables
+    function locked;
+    schema !set_locked(locked_in:bool) 	
+        post locked! = locked_in;
+    
+    // declare all visible operations here
+     
+    function supplyId rm_out:Room
+        satisfy result.rm_out = self; 
+
+     
+    ghost function unlock_prec : bool
+        ^= locked; 
+     
+    schema !unlock 
+        pre unlock_prec
+        post change  locked
+             satisfy ~ locked'; 
+
+     
+    ghost function lock_prec : bool
+        ^= ~ locked; 
+     
+    schema !lock 
+        pre lock_prec
+        post change  locked
+             satisfy locked'; 
+
+
+end;
+
+// local given type, free type and abbreviation definitions
+class Key ^= 
+abstract
+
+    // declarations of primary state variables go
+    var rooms:set of Room;
+    // declarations of constants go here
+
+    // invariants from state variables and state functions and implicit invariants
+    // from axiomatic definition
+confined
+    // redeclare getter (and setter) for all non-visible state variables and constants here
+    // add function INIT here if INIT is declared non-visible
+    
+    // declarations of secondary state variables go here
+       
+    // add all non-visible operations here to make them available for inheritance
+interface
+
+	operator = (arg);
+	
+    build{!rooms:set of Room}
+        pre rooms = set of Room{}
+        ;
+    
+    // add function init if init is declared visible
+    function INIT: bool
+    ^= rooms = set of Room{};
+
+    // getter function for all visible constants, primary and secondary variables, setter for primary state variables
+    function rooms;
+    schema !set_rooms(rooms_in:set of Room) 	
+        post rooms! = rooms_in;
+    
+    // declare all visible operations here
+     
+    ghost function extendAccess_prec (rm_in:Room): bool
+        ^= rm_in ~in rooms; 
+     
+    schema !extendAccess (rm_in:Room)
+        pre extendAccess_prec(rm_in)
+        post change  rooms
+             satisfy rooms' = rooms ++ set of Room {rm_in}; 
+
+     
+    ghost function rescindAccess_prec (rm_in:Room): bool
+        ^= rm_in in rooms; 
+     
+    schema !rescindAccess (rm_in:Room)
+        pre rescindAccess_prec(rm_in)
+        post change  rooms
+             satisfy rooms' = rooms -- set of Room {rm_in}; 
+
+     
+    function accessGranted (rm_in:Room): bool
+        ^= rm_in in rooms; 
+     
+    function accessDenied (rm_in:Room): bool
+        ^= rm_in ~in rooms; 
+
+
+end;
+
+// local given type, free type and abbreviation definitions
+class DataBase ^= 
+abstract
+
+    // declarations of primary state variables go
+    var access:set of pair of (Key, Room);
+    // declarations of constants go here
+
+    // invariants from state variables and state functions and implicit invariants
+    // from axiomatic definition
+confined
+    // redeclare getter (and setter) for all non-visible state variables and constants here
+    // add function INIT here if INIT is declared non-visible
+    
+    // declarations of secondary state variables go here
+       
+    // add all non-visible operations here to make them available for inheritance
+interface
+
+	operator = (arg);
+	
+    build{!access:set of pair of (Key, Room)}
+        pre access = set of pair of (Key, Room){}
+        ;
+    
+    // add function init if init is declared visible
+    function INIT: bool
+    ^= access = set of pair of (Key, Room){};
+
+    // getter function for all visible constants, primary and secondary variables, setter for primary state variables
+    function access;
+    schema !set_access(access_in:set of pair of (Key, Room)) 	
+        post access! = access_in;
+    
+    // declare all visible operations here
+     
+    ghost function extendAccess_prec (key_in:Key, rm_in:Room): bool
+        ^= ~ (pair of (Key, Room){key_in, rm_in} in access); 
+     
+    schema !extendAccess (key_in:Key, rm_in:Room)
+        pre extendAccess_prec(key_in, rm_in)
+        post change  access
+             satisfy access' = access ++ set of pair of (Key, Room) {pair of (Key, Room){key_in, rm_in}}; 
+
+     
+    ghost function rescindAccess_prec (key_in:Key, rm_in:Room): bool
+        ^= (pair of (Key, Room){key_in, rm_in} in access); 
+     
+    schema !rescindAccess (key_in:Key, rm_in:Room)
+        pre rescindAccess_prec(key_in, rm_in)
+        post change  access
+             satisfy access' = access -- set of pair of (Key, Room) {pair of (Key, Room){key_in, rm_in}}; 
+
+     
+    function accessGranted (key_in:Key, rm_in:Room): bool
+        ^= (pair of (Key, Room){key_in, rm_in} in access); 
+     
+    function accessDenied (key_in:Key, rm_in:Room): bool
+        ^= ~ (pair of (Key, Room){key_in, rm_in} in access); 
+
+
+end;

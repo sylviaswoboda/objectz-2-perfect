@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/oz2perfect/!svn/ver/143/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates
+END
+PerfectOperationTemplateProviderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/oz2perfect/!svn/ver/162/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/PerfectOperationTemplateProviderTest.java
+END
+PerfectPredicateTemplateProviderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/PerfectPredicateTemplateProviderTest.java
+END
+StringTemplateSubstitutorTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/oz2perfect/!svn/ver/143/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/StringTemplateSubstitutorTest.java
+END
+StringTemplateClonerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/oz2perfect/!svn/ver/143/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/translator/templates/StringTemplateClonerTest.java
+END

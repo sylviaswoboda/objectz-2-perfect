@@ -1,0 +1,20 @@
+// Used in new predicates mapping
+
+forall(declarations, predicate) ::= <<(forall <declarations; separator=", "> :- (<predicate>))>>
+exists(declarations, predicate) ::= <<(exists <declarations; separator=", "> :- (<predicate>))>>
+any(declaration, predicate) ::= <<(any <declaration> :- (<predicate>))>>
+
+// boolean conjunctives
+equivalence(left, right) ::= "<left> \<==> <right>"
+implication(left, right) ::= "<left> ==> <right>"
+disjunction(left, right) ::= "<left> | <right>"
+conjunction(left, right) ::= "<left> & <right>"
+negation(axiom) ::= "~ <axiom>"
+
+initcall(object) ::= "<object>.INIT"
+binaryRelationReference(type, left, right, relation) ::= "<type> {<left>, <right>} in <relation>"
+termaryRelationReference(type, left, middle, right, relation) ::= "<type> {<left>, <middle>, <right>} in <relation>"
+
+trueT() ::= "true"
+falseT() ::= "false"
+

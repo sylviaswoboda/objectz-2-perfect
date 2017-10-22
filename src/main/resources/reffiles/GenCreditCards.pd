@@ -1,0 +1,200 @@
+// local given type, free type and abbreviation definitions
+class CreditCard ^= 
+abstract
+
+    // declarations of primary state variables go
+    var balance:int;
+    // declarations of constants go here
+    var limit:nat;
+
+    // invariants from state variables and state functions and implicit invariants
+    invariant balance + limit >= 0;
+    // from axiomatic definition
+    invariant limit in set of nat {1000, 2000, 5000};
+confined
+    // redeclare getter (and setter) for all non-visible state variables and constants here
+    // add function INIT here if INIT is declared non-visible
+    
+    // declarations of secondary state variables go here
+       
+    // add all non-visible operations here to make them available for inheritance
+     
+    function isValueSum (value1_in:nat, value2_in:nat): bool
+        ^= value1_in > 0 &
+           value2_in > 10 &
+           balance = value1_in + value2_in; 
+     
+    function getBalanceVal balanceVal_out:int
+        satisfy result.balanceVal_out = balance; 
+
+
+interface
+
+	operator = (arg);
+	
+    build{!balance:int, !limit:nat}
+        pre balance + limit >= 0,
+            limit in set of nat {1000, 2000, 5000},
+            balance = 0
+        ;
+    
+    // add function init if init is declared visible
+    function INIT: bool
+    ^= balance = 0;
+
+    // getter function for all visible constants, primary and secondary variables, setter for primary state variables
+    function limit;
+    function balance;
+    schema !set_balance(balance_in:int) 	
+        pre  balance_in + limit >= 0
+        post balance! = balance_in;
+    
+    // declare all visible operations here
+     
+    ghost function withdraw_prec (amount_in:nat): bool
+        ^= amount_in <= balance + limit; 
+     
+    function withdraw_constr (amount_in:nat):from CreditCard
+        satisfy result = CreditCard{balance - amount_in, limit}; 
+     
+    schema !withdraw (amount_in:nat)
+        pre withdraw_prec(amount_in)
+        post change  balance
+             satisfy balance' = balance - amount_in; 
+
+     
+    schema !deposit (amount_in:nat)
+        post change  balance
+             satisfy balance' = balance + amount_in; 
+
+     
+    function withdrawAvail_post amount_out:nat
+        satisfy result.amount_out = balance + limit; 
+     
+    schema !withdrawAvail (amount_out!:out nat)
+        post change  balance, amount_out
+             satisfy amount_out' = balance + limit ,
+                     balance' = -limit; 
+
+
+end;
+
+// local given type, free type and abbreviation definitions
+class CreditCardConfirm ^= inherits CreditCard 
+abstract
+
+    // declarations of primary state variables go
+    // declarations of constants go here
+
+    // invariants from state variables and state functions and implicit invariants
+    // from axiomatic definition
+confined
+    // redeclare getter (and setter) for all non-visible state variables and constants here
+    // add function INIT here if INIT is declared non-visible
+    
+    // declarations of secondary state variables go here
+       
+    // add all non-visible operations here to make them available for inheritance
+     
+    function fundsAvail funds_out:nat
+        satisfy result.funds_out = balance + limit; 
+
+interface
+
+	operator = (arg);
+	
+    build{balance_in:int, limit_in:nat}
+        pre limit_in in set of nat {1000, 2000, 5000},
+            balance_in + limit_in >= 0,
+            balance_in = 0
+        inherits CreditCard{balance_in, limit_in}
+        ;
+    
+    // add function init if init is declared visible
+
+    // getter function for all visible constants, primary and secondary variables, setter for primary state variables
+    
+    // declare all visible operations here
+     
+    ghost function withdrawConfirm_prec (amount_in:nat): bool
+        ^= self.withdraw_prec(amount_in) &
+           (exists tempVar1:CreditCardConfirm :- (tempVar1 = self.withdraw_constr(amount_in))); 
+    schema !withdrawConfirm (amount_in:nat, funds_out!:out nat)
+        pre withdrawConfirm_prec(amount_in)
+        post self!withdraw(amount_in) then
+               (funds_out! = self.fundsAvail.funds_out); 
+end;
+
+// local given type, free type and abbreviation definitions
+class GenCreditCards ^= 
+abstract
+
+    // declarations of primary state variables go
+    var cards:set of from CreditCard;
+    // declarations of constants go here
+
+    // invariants from state variables and state functions and implicit invariants
+    // from axiomatic definition
+confined
+    // redeclare getter (and setter) for all non-visible state variables and constants here
+    // add function INIT here if INIT is declared non-visible
+    
+    // declarations of secondary state variables go here
+       
+    // add all non-visible operations here to make them available for inheritance
+interface
+
+	operator = (arg);
+	
+    build{!cards:set of from CreditCard}
+        pre cards = set of from CreditCard{}
+        ;
+    
+    // add function init if init is declared visible
+    function INIT: bool
+    ^= cards = set of from CreditCard{};
+
+    // getter function for all visible constants, primary and secondary variables, setter for primary state variables
+    
+    // declare all visible operations here
+     
+    ghost function add_prec (card_in:from CreditCard): bool
+        ^= card_in ~in cards &
+           card_in.INIT; 
+     
+    schema !add (card_in:from CreditCard)
+        pre add_prec(card_in)
+        post change  cards
+             satisfy cards' = cards ++ set of from CreditCard {card_in}; 
+
+     
+    ghost function delete_prec (card_in:from CreditCard): bool
+        ^= card_in in cards; 
+     
+    schema !delete (card_in:from CreditCard)
+        pre delete_prec(card_in)
+        post change  cards
+             satisfy cards' = cards -- set of from CreditCard {card_in}; 
+
+     
+    ghost function withdraw_prec (amount_in:nat, card2_in:from CreditCard): bool
+        ^= card2_in in cards &
+           card2_in.withdraw_prec(amount_in); 
+    schema !withdraw (amount_in:nat, card2_in!:from CreditCard)
+        pre withdraw_prec(amount_in, card2_in)
+        post card2_in!withdraw(amount_in); 
+     
+    ghost function deposit_prec (amount_in:nat, card_in:from CreditCard): bool
+        ^= card_in in cards; 
+    schema !deposit (amount_in:nat, card_in!:from CreditCard)
+        pre deposit_prec(amount_in, card_in)
+        post card_in!deposit(amount_in); 
+     
+    ghost function withdrawConfirm_prec (amount_in:nat, card_in:CreditCardConfirm): bool
+        ^= card_in in cards &
+           card_in.withdrawConfirm_prec(amount_in); 
+    schema !withdrawConfirm (amount_in:nat, card_in!:CreditCardConfirm, funds_out!:out nat)
+        pre withdrawConfirm_prec(amount_in, card_in)
+        post card_in!withdrawConfirm(amount_in, funds_out!); 
+
+end;

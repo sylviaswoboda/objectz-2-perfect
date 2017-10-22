@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/datatypes/postconditions/combinable
+END
+OperationOrderingCalculatorTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/oz2perfect/!svn/ver/134/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/datatypes/postconditions/combinable/OperationOrderingCalculatorTest.java
+END
+ParallelCompositionFactoryOutputPromotionsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/oz2perfect/!svn/ver/141/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/datatypes/postconditions/combinable/ParallelCompositionFactoryOutputPromotionsTest.java
+END
+CompositePostconditionFactoryTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/oz2perfect/!svn/ver/134/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/datatypes/postconditions/combinable/CompositePostconditionFactoryTest.java
+END
+CompositePostconditionDataEliminatorTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/oz2perfect/!svn/ver/161/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/datatypes/postconditions/combinable/CompositePostconditionDataEliminatorTest.java
+END
+CompositePostconditionDataCollectorTestBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/datatypes/postconditions/combinable/CompositePostconditionDataCollectorTestBase.java
+END
+CompositePostconditionDataCollectorTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/oz2perfect/!svn/ver/140/ObjectZ2PerfectANTLR4/src/test/at/ac/tuwien/oz/datatypes/postconditions/combinable/CompositePostconditionDataCollectorTest.java
+END
