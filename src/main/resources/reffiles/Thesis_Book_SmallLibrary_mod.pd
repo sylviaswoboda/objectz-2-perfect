@@ -1,0 +1,82 @@
+class SmallLibrary ^=
+abstract
+    var book1: Book;
+    var book2: Book;
+    var book3: Book;
+    var recensionsWall: set of pair of (Book, String);
+    invariant book1 ~= book2;
+    invariant book1 ~= book3;
+    invariant book2 ~= book3;
+
+confined
+    
+    function book1;
+    function book2;
+    function book3;
+    function recensionsWall;
+
+    schema !set_book1(book1_in:Book)
+        pre  book1_in ~= book2,
+             book1_in ~= book3
+        post book1! = book1_in;
+
+    schema !set_book2(book2_in:Book)
+        pre  book1 ~= book2_in,
+             book2_in ~= book3
+        post book2! = book2_in;
+
+    schema !set_book3(book3_in:Book)
+        pre  book1 ~= book3_in,
+             book2 ~= book3_in
+        post book3! = book3_in;
+
+    schema !set_recensionsWall(recensionsWall_in:set of pair of (Book, String))
+        post recensionsWall! = recensionsWall_in;
+
+
+
+interface
+
+    operator = (arg);
+
+    build{!book1:Book, !book2:Book, !book3:Book, !recensionsWall:set of pair of (Book, String)}
+        pre book1 ~= book2,
+            book1 ~= book3,
+            book2 ~= book3
+    ;
+
+
+
+
+    function postRecension_prec (book_in:Book, recension_in:String): bool
+        ^= (exists recensionsWall_temp:set of pair of (Book, String) :- (recensionsWall_temp = (those tempVar23::recensionsWall :- (exists tempVar24::set of pair of (Book, String) {pair of (Book, String) {book_in, recension_in}} :- tempVar23.x = tempVar24.x)) ++ set of pair of (Book, String) {pair of (Book, String) {book_in, recension_in}}));
+    schema !postRecension (book_in:Book, recension_in:String)
+        pre postRecension_prec(book_in, recension_in)
+        post change  recensionsWall
+             satisfy recensionsWall' = (those tempVar23::recensionsWall :- (exists tempVar24::set of pair of (Book, String) {pair of (Book, String) {book_in, recension_in}} :- tempVar23.x = tempVar24.x)) ++ set of pair of (Book, String) {pair of (Book, String) {book_in, recension_in}};
+
+
+    function authorLists_prec : bool
+        ^= book1.authorList_prec &
+           book2.authorList_prec &
+           (exists tempVar25:seq of String :- (tempVar25 = book1.authorList.authors_out & tempVar25 = book2.authorList.authors_out));
+    function authorLists authors_out:seq of String
+        pre authorLists_prec
+        satisfy result.authors_out = book1.authorList.authors_out;
+
+
+    function transferAuthorsAndRecension_prec : bool
+        ^= book1.authorList_prec & book2.latestRecension_prec & (exists tempVar27:seq of String :- (tempVar27 = book1.authorList.authors_out & book2.setAuthorList_prec(tempVar27))) & book3.latestRecension_prec;
+    schema !transferAuthorsAndRecension (authors_out!:out seq of String, recension_out!:out String)
+        pre transferAuthorsAndRecension_prec
+        post recension_out! = book2.latestRecension.recension_out & (var tempVar26:seq of String; (tempVar26! = book1.authorList.authors_out & book2!setAuthorList(tempVar26') & authors_out! = tempVar26')) then
+             recension_out! = book3.latestRecension.recension_out;
+
+
+    function switchAuthorsAndLend_prec (reader_in:String): bool
+        ^= book1.authorList_prec & book2.lend_prec(reader_in) & (exists tempVar32:seq of String :- (tempVar32 = book1.authorList.authors_out & book2.setAuthorList_prec(tempVar32))) | book2.authorList_prec & book2.lend_prec(reader_in) & (exists tempVar33:seq of String :- (tempVar33 = book2.authorList.authors_out & book1.setAuthorList_prec(tempVar33)));
+    opaque schema !switchAuthorsAndLend (reader_in:String)
+        pre switchAuthorsAndLend_prec(reader_in)
+        post ([book1.authorList_prec & book2.lend_prec(reader_in) & (exists tempVar28:seq of String :- (tempVar28 = book1.authorList.authors_out & book2.setAuthorList_prec(tempVar28)))]: (var tempVar29:seq of String; ((tempVar29! = book1.authorList.authors_out & book2!lend(reader_in)) then
+             book2!setAuthorList(tempVar29))), [book2.authorList_prec & book2.lend_prec(reader_in) & (exists tempVar30:seq of String :- (tempVar30 = book2.authorList.authors_out & book1.setAuthorList_prec(tempVar30)))]: book2!lend(reader_in) & (var tempVar31:seq of String; (tempVar31! = book2.authorList.authors_out & book1!setAuthorList(tempVar31'))));
+end;

@@ -98,16 +98,18 @@ public abstract class Operation extends BaseDefinition implements IOperation, IS
 	}
 	protected void addOutputParameters(Declarations outputVariables) {
 		if (outputVariables != null){
+			this.symbolTable.addAll(outputVariables.asList());
 			this.outputParameters.addAll(outputVariables);
-			// TODO symbol table??
 		}
 	}
 	protected void addOutputParameter(Variable outputVariable) {
 		if (outputVariable != null){
+			this.symbolTable.add(outputVariable);
 			this.outputParameters.add(outputVariable);
 		}
 	}
 	protected void addAuxiliaryParameters(Declarations auxiliaryVariables) {
+		this.symbolTable.addAll(auxiliaryVariables.asList());
 		this.auxiliaryParameters.addAll(auxiliaryVariables);
 	}
 

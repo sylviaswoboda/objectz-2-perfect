@@ -74,6 +74,19 @@ public class TranslateClassTest extends TranslationTestBase{
 		verifyDefinitionTranslationWithFiles("SmallLibrary", testFileName, referenceFileName3);
 		
 	}
+	
+	@Test
+	public void testThesisExampleModified() throws RecognitionException, IOException{
+		String testFileName = "src/main/resources/testfiles/Thesis_Book_mod.oz";
+		String referenceFileName1 = "src/main/resources/reffiles/Thesis_Book_String.pd";
+		String referenceFileName2 = "src/main/resources/reffiles/Thesis_Book_Book_mod.pd";
+		String referenceFileName3 = "src/main/resources/reffiles/Thesis_Book_SmallLibrary_mod.pd";
+		verifyDefinitionTranslationWithFiles("String", testFileName, referenceFileName1);
+		verifyDefinitionTranslationWithFiles("Book", testFileName, referenceFileName2);
+		verifyDefinitionTranslationWithFiles("SmallLibrary", testFileName, referenceFileName3);
+		
+	}
+
 	@Test
 	public void testRecension() throws RecognitionException, IOException{
 		String testFileName = "src/main/resources/testfiles/09_OverrideFunction.oz";
@@ -90,7 +103,7 @@ public class TranslateClassTest extends TranslationTestBase{
 		verifyDefinitionTranslationWithFiles("Room", testFileName, referenceFileName2);
 		verifyDefinitionTranslationWithFiles("Key", testFileName, referenceFileName1);
 		// TODO this does not yet work -> future work
-		//verifyDefinitionTranslationWithFiles("KeySystem", testFileName, referenceFileName3);
+//		verifyDefinitionTranslationWithFiles("KeySystem", testFileName, referenceFileName3);
 		
 	}
 

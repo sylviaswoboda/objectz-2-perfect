@@ -17,9 +17,7 @@ confined
     function INIT: bool
     ^= recensionHistory = seq of String {} &
        readerHistory = seq of String {} &
-       ~ lent &
-       ~ reviewed &
-       ~ mayBeReviewed;
+       ~ lent & ~ reviewed & ~ mayBeReviewed;
     function title;
     function authors;
     function recensionHistory;
@@ -69,35 +67,30 @@ interface
             maxHistoryEntries in set of nat {10, 20, 50, 100},
             recensionHistory = seq of String {},
             readerHistory = seq of String {},
-            ~ lent,
-            ~ reviewed,
-            ~ mayBeReviewed
+            ~ lent & ~ reviewed & ~ mayBeReviewed
     ;
 
 
 
 
-    function lend_prec (lender_in:String): bool
+    function lend_prec (reader_in:String): bool
         ^= ~ lent &
-           (exists mayBeReviewed_temp:bool, readerHistory_temp:seq of String, lent_temp:bool, reviewed_temp:bool :- (mayBeReviewed_temp & lent_temp & ~ reviewed_temp & readerHistory_temp = readerHistory ++ seq of String {lender_in}));
-    schema !lend (lender_in:String)
-        pre lend_prec(lender_in)
+           (exists mayBeReviewed_temp:bool, readerHistory_temp:seq of String, lent_temp:bool, reviewed_temp:bool :- (mayBeReviewed_temp & lent_temp & ~ reviewed_temp & readerHistory_temp = readerHistory ++ seq of String {reader_in}));
+    schema !lend (reader_in:String)
+        pre lend_prec(reader_in)
         post change  mayBeReviewed, readerHistory, lent, reviewed
-             satisfy mayBeReviewed' &
-                     lent' &
-                     ~ reviewed' &
-                     readerHistory' = readerHistory ++ seq of String {lender_in};
+             satisfy mayBeReviewed' & lent' & ~ reviewed' &
+                     readerHistory' = readerHistory ++ seq of String {reader_in};
 
 
-    function return_prec (lender_in:String): bool
+    function return_prec (reader_in:String): bool
         ^= lent &
-           lender_in = readerHistory.last &
+           reader_in = readerHistory.last &
            (exists lent_temp:bool, mayBeReviewed_temp:bool :- (~ mayBeReviewed_temp & ~ lent_temp));
-    schema !return (lender_in:String)
-        pre return_prec(lender_in)
+    schema !return (reader_in:String)
+        pre return_prec(reader_in)
         post change  lent, mayBeReviewed
-             satisfy ~ mayBeReviewed' &
-                     ~ lent';
+             satisfy ~ mayBeReviewed' & ~ lent';
 
 
     function latestRecension_prec : bool
@@ -131,14 +124,12 @@ interface
 
 
     function review_prec (reader_in:String, recension_in:String): bool
-        ^= ~ reviewed &
+        ^= ~ reviewed & mayBeReviewed &
            reader_in = readerHistory.last &
-           mayBeReviewed &
            (exists reviewed_temp:bool, recensionHistory_temp:seq of String, mayBeReviewed_temp:bool :- (reviewed_temp & ~ mayBeReviewed_temp & ((#recensionHistory = maxHistoryEntries & recensionHistory_temp = recensionHistory.tail ++ seq of String {recension_in}) | (#recensionHistory < maxHistoryEntries & recensionHistory_temp = recensionHistory ++ seq of String {recension_in}))));
     schema !review (reader_in:String, recension_in:String)
         pre review_prec(reader_in, recension_in)
         post change  reviewed, recensionHistory, mayBeReviewed
-             satisfy reviewed' &
-                     ~ mayBeReviewed' &
+             satisfy reviewed' & ~ mayBeReviewed' &
                      ((#recensionHistory = maxHistoryEntries & recensionHistory' = recensionHistory.tail ++ seq of String {recension_in}) | (#recensionHistory < maxHistoryEntries & recensionHistory' = recensionHistory ++ seq of String {recension_in}));
 end;

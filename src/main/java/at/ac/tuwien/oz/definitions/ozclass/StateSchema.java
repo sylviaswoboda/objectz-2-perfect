@@ -115,18 +115,5 @@ public class StateSchema{
 		}
 		return primaryAxioms;
 	}
-	
-//	public List<ST> getPredicatesWithoutSecondaryVariables(){
-//		// TODO
-//		return new ArrayList<ST>();
-//	}
-//	public List<ST> getAdditionalInvariantsFromVariableTypeDeclarations(){
-//		// TODO
-//		return new ArrayList<ST>();
-//	}
-	
-	// needed for mapping of secondary variables
-	
-	
 }
 

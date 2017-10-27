@@ -267,7 +267,11 @@ public class OperationPromotion extends OperationExpression implements IPromoted
 	@Override
 	public void resolveOperationReferences(ParseTreeProperty<ExpressionType> typeTree) {
 		ObjectZClass definingClass = findDefiningClassOfCaller(typeTree, this.callerCtx);
+		
 		this.promotedOperation = definingClass.resolveOperation(new Ident(this.calledOperationName));
+		if (this.promotedOperation == null){
+			throw new ObjectZToPerfectTranslationException("could not find operation " + this.calledOperationName + " in the context of class " + this.definingClass.getName());
+		}
 		this.setInputAndOutputParameters();
 	}
 

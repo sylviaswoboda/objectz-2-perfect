@@ -1128,7 +1128,7 @@ public class PerfectTemplateProvider {
 			// TODO check that there really is an init function
 			redefine = true;
 		}
-		// TODO add initAxioms of inherited classes
+		// TODO add initAxiom-call of inherited class -> super.INIT
 		initAxioms.addAll(objectZClass.getInitialAxiomReferences().stream().map(i -> i.getAxiom().getPredicate()).collect(Collectors.toList()));
 		ST initState = null;
 		if (!initAxioms.isEmpty()){
