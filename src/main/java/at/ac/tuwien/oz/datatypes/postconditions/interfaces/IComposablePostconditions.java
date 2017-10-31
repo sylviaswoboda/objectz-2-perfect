@@ -37,17 +37,5 @@ public interface IComposablePostconditions extends IPostconditions {
 
 	boolean isEmpty();
 	
-//	/**
-//	 * Combination of one Combinable Postcondition with another, when there are common output variables
-//	 * 
-//	 */
-//	ICombinablePostconditions createConjunction(ICombinablePostconditions otherPostconditions, Declarations sharedOutputVariables);
-//
-//	ICombinablePostconditions createParallelComposition(ICombinablePostconditions other, Declarations communicationVariables, Declarations sharedOutputParameters);
-//
-//	ICombinablePostconditions createAssociativeParallelComposition(ICombinablePostconditions right,
-//			Declarations communicationVariables, Declarations sharedOutputParameters);
-//
-	
 	
 }

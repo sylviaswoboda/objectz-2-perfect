@@ -10,7 +10,8 @@ import at.ac.tuwien.oz.datatypes.postconditions.combinable.OutputPromotions;
  * @author sylvias
  *
  */
-public interface ICombinablePostconditions extends IComposablePostconditions{
+public interface ICombinablePostconditions 
+	extends IComposablePostconditions{
 
 	Declarations getSharedOutputVariables();
 	Declarations getVisibleCommunicationVariables();

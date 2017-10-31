@@ -167,8 +167,6 @@ public class ExpressionType {
 		}
 	}
 
-
-
 	public boolean isPredefinedType() {
 		return this.effectiveType.isPredefinedType();
 	}
@@ -202,20 +200,15 @@ public class ExpressionType {
 	public boolean isBag() {
 		return this.effectiveType.isBag();
 	}
-	
 	public boolean isMaplet() {
 		return this.effectiveType.isMaplet();
 	}
-	
 	public boolean isPair() {
 		return this.effectiveType.isPair();
 	}
 	public boolean isTriple() {
 		return this.effectiveType.isTriple();
 	}
-
-
-
 
 	@Override
 	public int hashCode() {
@@ -258,13 +251,7 @@ public class ExpressionType {
 		}
 		return false;
 	}
-
-	public ST getTemplate(){
-		return this.effectiveType.getTemplate();
-	}
-	public ST getDeclaredTemplate(){
-		return this.declaredType.getTemplate();
-	}
+	
 	public ExpressionType getSubExpressionType(int i) {
 		return this.effectiveType.getSubExpressionType(i);
 	}
@@ -276,6 +263,12 @@ public class ExpressionType {
 		return this.effectiveType.getSubExpressionTypes().size();
 	}
 
+	public ST getTemplate(){
+		return this.effectiveType.getTemplate();
+	}
+	public ST getDeclaredTemplate(){
+		return this.declaredType.getTemplate();
+	}
 	public void setDeclaredTypeTemplate(ParseTreeProperty<ST> templateTree) {
 		this.declaredType.setTemplate(templateTree);
 	}

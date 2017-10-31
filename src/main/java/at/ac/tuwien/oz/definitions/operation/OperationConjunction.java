@@ -6,7 +6,7 @@ import at.ac.tuwien.oz.datatypes.postconditions.interfaces.ICompositionFactory;
 import at.ac.tuwien.oz.datatypes.preconditions.PreconditionFactory;
 import at.ac.tuwien.oz.definitions.operation.interfaces.ICombinableOperation;
 
-public class OperationConjunction extends CombinedOperation implements ICombinableOperation{
+public class OperationConjunction extends CombinedOperation{
 
 	public OperationConjunction(ICombinableOperation leftOperation, ICombinableOperation rightOperation) {
 		super(leftOperation, rightOperation);

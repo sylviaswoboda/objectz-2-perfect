@@ -6,7 +6,6 @@ import java.util.List;
 import org.stringtemplate.v4.ST;
 
 import at.ac.tuwien.oz.datatypes.Declarations;
-import at.ac.tuwien.oz.datatypes.Ident;
 import at.ac.tuwien.oz.datatypes.Idents;
 import at.ac.tuwien.oz.datatypes.Variable;
 import at.ac.tuwien.oz.datatypes.axioms.Axiom;
@@ -131,6 +130,21 @@ public class PostconditionFactory implements ICompositionFactory {
 		
 	}
 
+	public IPostconditions createVarPostconditionForScopeEnrichment(ScopeEnrichment scopeEnrichment) {
+		SimplePostconditions simple = new SimplePostconditions();
+		Variable auxiliaryVariable = scopeEnrichment.getAuxiliaryVariable();
+		List<ST> auxiliaryVariablePredicates = scopeEnrichment.getAuxiliaryVariablePostconditions().getTemplates();
+		auxiliaryVariablePredicates.addAll(scopeEnrichment.getPromotedPreconditions().getTemplates());
+		List<ST> postconditions = scopeEnrichment.getPromotedPostconditions().getTemplates();
+		Idents usedIdentifiers = scopeEnrichment.getPromotedPostconditions().getUsedIdentifiers();
+		
+		ST postcondition = PerfectPredicateTemplateProvider.getInstance()
+				.createVarPostconditionForScopeEnrichment(auxiliaryVariable, auxiliaryVariablePredicates, postconditions);
+		SimplePostcondition newPostcondition = new SimplePostcondition(postcondition, usedIdentifiers);
+		simple.add(newPostcondition);
+		return simple;
+	}
+
 	private void integrateSequentialPostcondition(IComposableOperation operation,
 			Declarations sharedVariables, List<Declarations> newCommunicationVariables,
 			List<IComposablePostconditions> newPostconditions) {
@@ -153,22 +167,6 @@ public class PostconditionFactory implements ICompositionFactory {
 		ST varTypeST = v.getDeclaredTypeTemplate();
 		ST inST = perfect.getElem(varST, varTypeST);
 		return new SimplePostcondition(inST, usedIdentifiers);
-	}
-
-	
-	public IPostconditions createVarPostconditionForScopeEnrichment(ScopeEnrichment scopeEnrichment) {
-		SimplePostconditions simple = new SimplePostconditions();
-		Variable auxiliaryVariable = scopeEnrichment.getAuxiliaryVariable();
-		List<ST> auxiliaryVariablePredicates = scopeEnrichment.getAuxiliaryVariablePostconditions().getTemplates();
-		auxiliaryVariablePredicates.addAll(scopeEnrichment.getPromotedPreconditions().getTemplates());
-		List<ST> postconditions = scopeEnrichment.getPromotedPostconditions().getTemplates();
-		Idents usedIdentifiers = scopeEnrichment.getPromotedPostconditions().getUsedIdentifiers();
-		
-		ST postcondition = PerfectPredicateTemplateProvider.getInstance()
-				.createVarPostconditionForScopeEnrichment(auxiliaryVariable, auxiliaryVariablePredicates, postconditions);
-		SimplePostcondition newPostcondition = new SimplePostcondition(postcondition, usedIdentifiers);
-		simple.add(newPostcondition);
-		return simple;
 	}
 
 
